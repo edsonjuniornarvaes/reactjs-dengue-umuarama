@@ -1,0 +1,63 @@
+body,
+input,
+textarea,
+button {
+  font: 500 1rem Inter, sans-serif;
+  color: var(--gray-500);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: Lexend, sans-serif;
+  color: var(--gray-800);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.first-title {
+  color: var(--gray-800);
+  font-weight: 600 !important;
+}
+
+.second-title {
+  color: var(--gray-800);
+  font-weight: 300 !important;
+}
+
+.description-title {
+  font-size: 0.7rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.pagination-default-style {
+  &:hover {
+    color: var(--white) !important;
+    text-decoration: none !important;
+  }
+}
+
+th {
+  color: var(--text-muted) !important;
+}
+
+.card {
+  border-color: var(--white);
+}
