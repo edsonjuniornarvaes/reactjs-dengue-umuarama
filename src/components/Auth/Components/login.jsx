@@ -1,9 +1,18 @@
+/* SECTION: Standard imports. */
 import React, { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 
-import * as yup from "yup";
+/* SECTION: Lib imports. */
+import { addDays } from "date-fns";
+import Cookies from "js-cookie";
+
+/* SECTION: Query imports. */
+import { useAuthContext } from "../../../context/AuthContext";
+
+/* SECTION: Layout imports. */
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
 
 export default function Login() {
   const initialValues = { email: "", password: "" };
@@ -12,11 +21,17 @@ export default function Login() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { setIsAuthorized } = useAuthContext();
+
   const history = useHistory();
 
   const submit = () => {
-    console.log(formValues);
-    history.push(`/`);
+    const auth = Cookies.getJSON("auth");
+
+    if (auth) {
+      setIsAuthorized(true);
+      history.push(`/`);
+    }
   };
 
   const handleChange = (e) => {
@@ -43,7 +58,15 @@ export default function Login() {
     if (!values.password) {
       errors.password = "Senha não pode ficar em branco";
     } else if (values.password.length < 4) {
-      errors.password = "Sua senha deve ter no mínimo 4 caracteres";
+      errors.password = "Mínimo de 4 caracteres";
+    }
+
+    if (regex.test(values.email) && values.email != "user@gmail.com") {
+      errors.email = "Usuário incorreto";
+    }
+
+    if (values.password.length >= 4 && values.password != "123password") {
+      errors.password = "Senha incorreta";
     }
 
     return errors;
@@ -51,6 +74,10 @@ export default function Login() {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      Cookies.set("auth", JSON.stringify(true), {
+        expires: addDays(new Date(), 1),
+      });
+
       submit();
     }
   }, [formErrors]);
@@ -88,9 +115,14 @@ export default function Login() {
           <span className="error text-danger">{formErrors.password}</span>
         )}
       </Form.Group>
-      <Button className="mt-1" variant="primary" type="submit">
-        Login
-      </Button>
+      <Form.Row controlId="formBasicPassword">
+        <Nav.Link href="#" className="mr-auto text-muted link-menu mr-2 mt-2">
+          Novo usuário?
+        </Nav.Link>
+        <Button className="mt-1" variant="primary" type="submit">
+          Login
+        </Button>
+      </Form.Row>
     </Form>
   );
 }
