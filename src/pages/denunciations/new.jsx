@@ -1,6 +1,9 @@
 /* SECTION: Standard imports. */
 import { useState } from "react";
 
+/* SECTION: lib imports. */
+import InputMask from "react-input-mask";
+
 /* SECTION: Layout imports. */
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -53,11 +56,13 @@ export default function NewReport() {
           <Form.Row>
             <Form.Group className="col-12 col-sm-4">
               <Form.Label>CEP</Form.Label>
-              <Form.Control
-                type="text"
+              <InputMask
+                mask="99/99/9999"
                 id="cep"
+                className="form-control"
                 name="cep"
                 placeholder="CEP"
+                mask="99999-999"
                 onChange={(e) => {
                   setInitialValues({ ...initialValues, cep: e.target.value });
                 }}
