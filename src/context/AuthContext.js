@@ -26,13 +26,10 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     if (handleCookie != null) {
-      console.log("passou pelo cookie trur");
       setIsAuthorized(true);
     }
 
     if (handleCookie == null) {
-      console.log("passou pelo cookie fals");
-
       setIsAuthorized(false);
     }
   }, []);

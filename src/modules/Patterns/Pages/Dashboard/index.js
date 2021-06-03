@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
-import Table from "../../Patterns/DataDisplay/Table";
+import Table from "../../DataDisplay/Table";
 
 export default function Dashboard({ title }) {
   const sellers = [

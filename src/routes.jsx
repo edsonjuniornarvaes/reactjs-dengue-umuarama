@@ -8,8 +8,8 @@ import { useAuthContext } from "./context/AuthContext";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/auth/login";
 import Logout from "./pages/auth/Logout";
-import NewReport from "./pages/denunciations/new";
-import ListOfComplaints from "./pages/denunciations";
+import Report from "./pages/report/report";
+import ListOfComplaints from "./pages/report";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();
@@ -37,7 +37,7 @@ const Routes = () => {
         <Route component={Dashboard} path="/" exact />
         <Route component={Login} path="/auth/login" />
         <PrivateRoute component={Logout} path="/auth/logout" />
-        <PrivateRoute component={NewReport} path="/denuncias/novo" />
+        <PrivateRoute component={Report} path="/denuncias/novo" />
         <PrivateRoute component={ListOfComplaints} path="/denuncias/lista" />
       </Switch>
     </BrowserRouter>

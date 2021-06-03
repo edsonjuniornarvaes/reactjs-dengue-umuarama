@@ -1,4 +1,4 @@
-import Dashboard from "../components/Dashboard/Dashboard";
+import Dashboard from "../modules/Patterns/Pages/Dashboard";
 import PanelLayout from "../theme/layouts/Panel";
 
 export default function DashboardPage() {

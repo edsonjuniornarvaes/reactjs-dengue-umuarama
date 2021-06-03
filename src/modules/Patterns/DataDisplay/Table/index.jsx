@@ -17,7 +17,7 @@ import TableBootstrap from "react-bootstrap/Table";
 import {
   StyleTable,
   StyledInputSearch,
-} from "../../../theme/layouts/Pagination/Styles";
+} from "../../../../theme/layouts/Pagination/Styles";
 
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";

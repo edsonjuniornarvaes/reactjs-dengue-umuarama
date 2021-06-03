@@ -14,7 +14,7 @@ export default function LayoutPanel({ children }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navbar-menu">
             <Nav.Link
-              href="denuncias/novo"
+              href="/denuncias/novo"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
               Denunciar foco

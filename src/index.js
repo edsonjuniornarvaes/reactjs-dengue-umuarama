@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./theme/styles/globals.scss";
-import "./theme/styles/panel/panel.scss";
+import "./theme/styles/patterns/layout/panel/panel.scss";
+import "./theme/styles/patterns/layout/card/card.scss";
+import "./theme/styles/patterns/forms/form.scss";
 import "./theme/styles/all.scss";
 import { AuthContextProvider } from "./context/AuthContext";
 
