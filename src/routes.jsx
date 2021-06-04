@@ -8,8 +8,8 @@ import { useAuthContext } from "./context/AuthContext";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/auth/login";
 import Logout from "./pages/auth/Logout";
-import Report from "./pages/report/report";
-import ListOfComplaints from "./pages/report";
+import Report from "./pages/report/new/report";
+import ListOfComplaints from "./pages/report/list";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();

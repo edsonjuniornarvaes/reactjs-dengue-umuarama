@@ -1,5 +1,5 @@
 /* ANCHOR: 📨 Query imports. */
-import { api } from "../../../../../services/interceptors";
+import { api } from "../../../../../../services/interceptors";
 
 /* ANCHOR: 🎨 Style imports. */
 import { toast } from "react-toastify";

@@ -20,10 +20,10 @@ export default function LayoutPanel({ children }) {
               Denunciar foco
             </Nav.Link>
             <Nav.Link
-              href="denuncias/lista"
+              href="/denuncias/lista"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
-              Novos focos
+              Lista de focos
             </Nav.Link>
             <Nav.Link
               href="/auth/logout"

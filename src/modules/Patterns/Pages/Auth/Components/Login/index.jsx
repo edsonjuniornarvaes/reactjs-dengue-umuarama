@@ -23,7 +23,7 @@ export default function Login({ loginUrl }) {
   let history = useHistory();
 
   const [spinnerInButton, setSpinnerInButton] = useState(false);
-  const [txtButton, setTxtButton] = useState("Salvar");
+  const [txtButton, setTxtButton] = useState("Entrar");
   const [error, setError] = useState(null);
 
   const [initialValues, setInitialValues] = useState({

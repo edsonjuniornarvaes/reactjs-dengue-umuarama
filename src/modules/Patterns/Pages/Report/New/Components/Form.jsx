@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 /* ANCHOR: 📦 Component imports. */
-import { CardLayout } from "../../../../../modules/Patterns/Layout/Card";
-import { Input } from "../../../../../modules/Patterns/Forms/Input";
-import { Textarea } from "../../../../../modules/Patterns/Forms/Textarea";
+import { CardLayout } from "../../../../../../modules/Patterns/Layout/Card";
+import { Input } from "../../../../../../modules/Patterns/Forms/Input";
+import { Textarea } from "../../../../../../modules/Patterns/Forms/Textarea";
 
 /* ANCHOR: 📨 Query imports. */
 import { ReportCreate } from "../Api";
