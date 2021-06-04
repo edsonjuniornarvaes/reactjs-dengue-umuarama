@@ -1,0 +1,85 @@
+.material-icons {
+  color: var(--success) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  top: 6px !important;
+  right: 30px !important;
+}
+
+.react-datepicker {
+  font-style: normal !important;
+  font-weight: 400 !important;
+  border: none !important;
+  box-shadow: 0 2px 6px var(--transparent-dark) !important;
+
+  &__header {
+    background-color: var(--white) !important;
+    border-bottom: none !important;
+  }
+
+  &__triangle {
+    display: none;
+  }
+
+  &__day {
+    font-weight: 2px !important;
+
+    &-name {
+      color: #696969 !important;
+      ::first-letter {
+        visibility: visible !important;
+        text-transform: uppercase !important;
+      }
+    }
+
+    &--outside-month,
+    &-name {
+      color: #696969 !important;
+    }
+  }
+
+  &__day--selected {
+    border-radius: 50% !important;
+    background-color: var(--success) !important;
+    color: var(--white) !important;
+    font-weight: bold !important;
+
+    &:hover {
+      border-radius: 50% !important;
+    }
+  }
+
+  &__current-month {
+    color: #696969 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  &__close-icon::after {
+    background-color: var(--success) !important;
+    font-weight: bold !important;
+  }
+
+  &__year-dropdown,
+  &__month-dropdown,
+  &__month-year-dropdown {
+    background-color: var(--white) !important;
+  }
+
+  &__year-read-view--down-arrow,
+  &__month-read-view--down-arrow,
+  &__month-year-read-view--down-arrow {
+    margin-left: 25px !important;
+    top: 5px !important;
+  }
+
+  &__day--keyboard-selected,
+  &__month-text--keyboard-selected,
+  &__quarter-text--keyboard-selected,
+  &__year-text--keyboard-selected {
+    border-radius: 50% !important;
+    background-color: var(--success) !important;
+    color: var(--white) !important;
+  }
+}

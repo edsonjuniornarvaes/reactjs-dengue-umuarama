@@ -1,0 +1,71 @@
+// Root Font Sizes
+$root-font-size: 13px; // Root font size for desktop mode
+$root-font-size-lg: 13px; // Root font size for tablet mode
+$root-font-size-md: 12px; // Root font size for mobile mode
+
+// Layout Theme Colors
+$layout-themes: (
+  dark: #1e1e2d,
+  // Dark theme color
+  light: #ffffff // Light theme color,,,,
+) !default;
+
+// Page Background Color
+$page-bg: #eef0f8 !default;
+
+// Page Paddings
+$page-padding: (
+  desktop: 25px,
+  // Padding for desktop mode
+  tablet-and-mobile: 15px // Padding for tablet and mobile modes,,,,
+) !default;
+
+// Navi
+$navi-config: (
+  link-px: 1.5rem,
+  link-py: 0.75rem,
+  header-px: 1.5rem,
+  header-py: 0.75rem,
+  footer-px: 1.5rem,
+  footer-py: 0.75rem,
+  section-px: 1.5rem,
+  section-py: 0.75rem,
+  link-elem-space: 0.75rem,
+  link-opacity-disabled: 0.6,
+  separator: $border-color,
+  border: $border-color,
+  link-bg-hover: $gray-100,
+  link-bg-active: $gray-100,
+  link-bullet-bg: $gray-300,
+  link-bullet-bg-hover: $primary,
+  link-bullet-bg-active: $primary,
+  link-text-font-size: 1rem,
+  link-text-font-size-lg: 1.1rem,
+  link-text-font-size-xl: 1.2rem,
+  link-text-color: $dark-75,
+  link-text-color-hover: $primary,
+  link-text-color-active: $primary,
+  link-icon-circle-width: 4rem,
+  link-icon-circle-width-lg: 4.5rem,
+  link-icon-circle-width-xl: 5rem,
+  link-icon-width: 2rem,
+  link-icon-width-lg: 3rem,
+  link-icon-width-xl: 4rem,
+  link-icon-font-size: 1.25rem,
+  link-icon-font-size-lg: 1.5rem,
+  link-icon-font-size-xl: 1.75rem,
+  link-icon-svg-size: 22px,
+  link-icon-svg-size-lg: 28px,
+  link-icon-svg-size-xl: 32px,
+  link-icon-color: $gray-500,
+  link-icon-light-color: $gray-400,
+  link-icon-color-hover: $primary,
+  link-icon-color-active: $primary,
+  link-icon-circle-bg: $gray-100,
+  link-icon-circle-bg-hover: $gray-200,
+  link-icon-circle-bg-active: $gray-200,
+  link-arrow-font-size: 0.6rem,
+  link-arrow-color: $gray-500,
+  link-arrow-color-hover: $primary,
+  link-arrow-color-active: $primary,
+) !default;

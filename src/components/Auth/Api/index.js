@@ -1,2 +1,0 @@
-/* ANCHOR: All access schemes.
-- --------------------------*/

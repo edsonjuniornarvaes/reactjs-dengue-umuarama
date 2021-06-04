@@ -1,5 +1,5 @@
-import styles from "../../theme/styles/auth/auth.module.css";
-import Login from "../../components/Auth/Components/login";
+import styles from "../../theme/styles/patterns/pages/auth/auth.module.css";
+import Login from "../../modules/Patterns/Pages/Auth/Components/Login";
 import dengueUmuaramaLogo from "../../dengue-umuarama-logo.png";
 
 export default function Home() {
@@ -9,7 +9,6 @@ export default function Home() {
         <title>Web Dengue | Login</title>
         <link rel="icon" href="/" />
       </head>
-
       <section className={styles.main}>
         <img
           alt="Dengue Umuarama Panel"
@@ -20,7 +19,7 @@ export default function Home() {
         <h5 className="mt-4">Faça seu login</h5>
         <p>Utilize suas credenciais para acessar</p>
         <div className={styles.grid}>
-          <Login />
+          <Login loginUrl="/login" />
         </div>
       </section>
     </div>

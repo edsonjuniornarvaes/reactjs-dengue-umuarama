@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
-import Table from "../../Patterns/Table";
+import Table from "../../DataDisplay/Table";
 
 export default function Dashboard({ title }) {
   const sellers = [
@@ -112,7 +112,7 @@ export default function Dashboard({ title }) {
         <Card>
           <Card.Body>
             <Card.Title className="font-weight-bold text-muted">
-              <span class="badge-sm badge-danger mr-1">&nbsp;</span>
+              <span className="badge-sm badge-danger mr-1">&nbsp;</span>
               <span className="text-danger">Casos em Umuarama</span>
             </Card.Title>
             <Card.Text>
@@ -123,7 +123,7 @@ export default function Dashboard({ title }) {
         <Card>
           <Card.Body>
             <Card.Title className="font-weight-bold text-muted">
-              <span class="badge-sm badge-warning mr-1">&nbsp;</span>
+              <span className="badge-sm badge-warning mr-1">&nbsp;</span>
               <span className="text-warning">Bairros com focos</span>
             </Card.Title>
             <Card.Text>
@@ -134,7 +134,7 @@ export default function Dashboard({ title }) {
         <Card>
           <Card.Body>
             <Card.Title className="font-weight-bold text-muted">
-              <span class="badge-sm badge-primary mr-1">&nbsp;</span>
+              <span className="badge-sm badge-primary mr-1">&nbsp;</span>
               <span className="text-primary">Total de denúncias</span>
             </Card.Title>
             <Card.Text>

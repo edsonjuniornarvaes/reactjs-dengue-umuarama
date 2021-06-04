@@ -1,0 +1,27 @@
+// Input
+.form-control-solid {
+  background-color: #f3f6f9;
+  border-color: #f3f6f9;
+  color: #3f4254;
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &.form-control-solid {
+    background-color: #f3f6f9;
+    border-color: #f3f6f9;
+    color: #3f4254;
+    transition: color 0.15s ease, background-color 0.15s ease,
+      border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:active,
+    &.active,
+    &:focus,
+    &.focus {
+      background-color: #ebedf3;
+      border-color: #ebedf3;
+      color: #3f4254;
+      transition: color 0.15s ease, background-color 0.15s ease,
+        border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+  }
+}
