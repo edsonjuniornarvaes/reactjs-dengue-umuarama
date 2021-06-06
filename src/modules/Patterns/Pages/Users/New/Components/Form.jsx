@@ -3,47 +3,45 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 /* ANCHOR: 📦 Component imports. */
-import { CardLayout } from "../../../../../../modules/Patterns/Layout/Card";
-import { Input } from "../../../../../../modules/Patterns/Forms/Input";
-import { Textarea } from "../../../../../../modules/Patterns/Forms/Textarea";
+import { CardLayout } from "../../../../Layout/Card";
+import { Input } from "../../../../Forms/Input";
 
 /* ANCHOR: 📨 Query imports. */
-import { ReportCreate } from "../Api";
+import { UserCreate } from "../Api";
 
 /* ANCHOR: 🎨 Style imports. */
-import { BiUserVoice, BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { BiUserCircle, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Spinner } from "react-bootstrap";
 
 /* ANCHOR: 📝 Form imports. */
 import { Formik, Form } from "formik";
-import { ReportValidationScheme } from "./Scheme";
+import { UserValidationScheme } from "./Scheme";
 import { FormScheme } from "./FormScheme";
+import { CpfVerify } from "../../../../../../utils/validation";
+import { PhoneFormat } from "../../../../../../utils/format";
 
-export default function ReportForm({ reportUrl }) {
+export default function UserForm({ userUrl }) {
   let history = useHistory();
 
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
 
   const [initialValues, setInitialValues] = useState({
-    cep: "",
-    rua: "",
-    numero: "",
-    bairro: "",
-    referencia: "",
-    foto: "",
-    descricao: "",
+    name: "",
+    cpf: "",
+    email: "",
+    phone: "",
+    password: "",
+    password_confirmation: "",
   });
 
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
     setTxtButton("Salvando");
 
-    console.log("imagem:", values.foto);
-
     const data = FormScheme(values);
 
-    await ReportCreate(reportUrl, data)
+    await UserCreate(userUrl, data)
       .then((res) => {
         setTxtButton("Salvar");
         setSpinnerInButton(false);
@@ -58,11 +56,21 @@ export default function ReportForm({ reportUrl }) {
       });
   };
 
+  const HandleCnpjVerify = async (e) => {
+    if (e.target.value && e.target.value != "") {
+      const data = await CpfVerify(e.target.value);
+
+      if (data == "invalid") return "invalid";
+
+      return "valid";
+    }
+  };
+
   return (
     <>
       <CardLayout
-        headerIcon={<BiUserVoice color="#00aeff" size={20} />}
-        headerTitle="Nova Denúncia"
+        headerIcon={<BiUserCircle color="#00aeff" size={20} />}
+        headerTitle="Novo Usuário"
         headerButtonTitle="Voltar"
         headerButtonIcon={<BiChevronLeft size={18} />}
         headerButtonHref="/"
@@ -70,7 +78,7 @@ export default function ReportForm({ reportUrl }) {
         <Formik
           onSubmit={onSubmit}
           enableReinitialize={true}
-          validationSchema={ReportValidationScheme}
+          validationSchema={UserValidationScheme}
           initialValues={initialValues}
           validateOnMount={true}
         >
@@ -78,74 +86,76 @@ export default function ReportForm({ reportUrl }) {
             <>
               <Form className="form form-label-right">
                 <div className="row">
-                  <div className="col-lg-4 form-group">
-                    <Input
-                      type="text"
-                      label="CEP"
-                      name="cep"
-                      placeholder="CEP"
-                      mask="99999-999"
-                      spantext="*"
-                    />
-                  </div>
                   <div className="col-lg-6 form-group">
                     <Input
                       type="text"
-                      label="Rua"
-                      name="rua"
-                      placeholder="Rua"
+                      label="Nome"
+                      name="name"
+                      placeholder="Nome"
                       spantext="*"
                     />
                   </div>
                   <div className="col-lg-2 form-group">
                     <Input
                       type="text"
-                      label="Número"
-                      name="numero"
-                      placeholder="Número"
+                      id="cpf"
+                      label="CPF"
+                      name="cpf"
+                      placeholder="CPF"
+                      mask="999.999.999-99"
                       spantext="*"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-4 form-group">
-                    <Input
-                      type="text"
-                      label="Bairro"
-                      name="bairro"
-                      placeholder="Bairro"
-                      spantext="*"
-                    />
-                  </div>
-                  <div className="col-lg-4 form-group">
-                    <Input
-                      type="text"
-                      label="Referência"
-                      name="referencia"
-                      placeholder="Referência"
-                    />
-                  </div>
-                  <div className="col-lg-4 form-group">
-                    <label>Foto</label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      name="foto"
-                      accept=".jpg, .jpeg, .png, .gif"
-                      onChange={(e) => {
-                        setFieldValue("foto", e.target.files[0]);
+                      onBlur={async (e) => {
+                        const data = e != "" && (await HandleCnpjVerify(e));
+                        if (data === "valid") {
+                          setFieldValue("cpf", e.target.value);
+                        }
+                        if (data === "invalid") {
+                          setFieldValue("cpf", "");
+                        }
                       }}
                     />
                   </div>
+                  <div className="col-lg-4 form-group">
+                    <Input
+                      type="text"
+                      label="Telefone"
+                      name="phone"
+                      placeholder="Telefone"
+                      spantext="*"
+                      addonText="+55"
+                      onBlur={PhoneFormat}
+                    />
+                  </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 form-group">
-                    <Textarea
-                      label="Descrição"
-                      name="descricao"
-                      placeholder="Descrição"
+                  <div className="col-lg-4 form-group">
+                    <Input
+                      type="email"
+                      id="email"
+                      label="Email"
+                      name="email"
+                      placeholder="Email"
                       spantext="*"
-                      value={values.descricao != null ? values.descricao : ""}
+                    />
+                  </div>
+                  <div className="col-lg-4 form-group">
+                    <Input
+                      type="text"
+                      id="password"
+                      label="Senha"
+                      name="password"
+                      placeholder="Senha"
+                      spantext="*"
+                    />
+                  </div>
+                  <div className="col-lg-4 form-group">
+                    <Input
+                      type="text"
+                      id="password_confirmation"
+                      label="Confirmar Senha"
+                      name="password_confirmation"
+                      placeholder="Confirmar Senha"
+                      spantext="*"
                     />
                   </div>
                 </div>

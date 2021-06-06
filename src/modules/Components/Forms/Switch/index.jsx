@@ -9,18 +9,10 @@ export const ToggleSwitch = ({
   name,
   checked,
   onChange,
-  optionLabels,
   small,
   disabled,
 }) => {
   const checkedRef = useRef(null);
-
-  function handleKeyPress(e) {
-    if (e.keyCode !== 32) return;
-
-    e.preventDefault();
-    onChange(!checked);
-  }
 
   return (
     <div className={"toggle-switch" + (small ? " small-switch" : "")}>

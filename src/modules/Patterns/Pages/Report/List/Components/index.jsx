@@ -1,5 +1,5 @@
 /* ANCHOR: 🧩 Standard imports. */
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../Layout/Card";
@@ -10,13 +10,145 @@ import Table from "../../../../DataDisplay/Table";
 import { ReportSituation } from "../Api";
 
 /* ANCHOR: 🎨 Style imports. */
-import { BiPlusCircle, BiChevronLeft } from "react-icons/bi";
+import { BiUserVoice, BiChevronLeft } from "react-icons/bi";
 import dengueUmuaramaLogo from "../../../../../../dengue-umuarama-logo.png";
 
 /* ANCHOR: 📦 Component imports. */
 import { ReportMoreInfoDialog } from "./MoreInfoDialog.jsx";
 
 export default function ReportList({ reportListUrl }) {
+  const [allData, setAllData] = useState([
+    {
+      id: 155,
+      zip_code: "87508-664",
+      street: "Rua Palmyra Delmonico",
+      number: "1234",
+      district: "Jardim Belo Monte",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      situation: false,
+    },
+    {
+      id: 185,
+      zip_code: "87510-659",
+      street: "Rua Ibirapuera",
+      number: "5927",
+      district: "Jardim Paraíso",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      situation: false,
+    },
+    {
+      id: 125,
+      zip_code: "87505-220",
+      street: "Rua Augusta Marques Mendonça",
+      number: "7859",
+      district: "Jardim Lisboa",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: true,
+    },
+    {
+      id: 15,
+      zip_code: "87502-490",
+      street: "Rua Augusto Pedro Torres",
+      number: "1237",
+      district: "Jardim Yoshi",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: true,
+    },
+    {
+      id: 159,
+      zip_code: "87508-017",
+      street: "Rua Augusto dos Anjos",
+      number: "9987",
+      district: "Parque Dom Pedro I",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: false,
+    },
+    {
+      id: 132,
+      zip_code: "87509-771",
+      street: "Rua Avelino Roveron",
+      number: "2364",
+      district: "Jardim Verde Vale",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: null,
+      situation: true,
+    },
+    {
+      id: 123,
+      zip_code: "87508-127",
+      street: "Rua Aventureiros",
+      number: "7894",
+      district: "Jardim San Martim",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: null,
+      situation: false,
+    },
+    {
+      id: 996,
+      zip_code: "87508-215",
+      street: "Rua Ayrton Senna",
+      number: "2268",
+      district: "Parque Tarumã",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: true,
+    },
+    {
+      id: 28,
+      zip_code: "87504-615",
+      street: "Rua Bela Vista",
+      number: "7519",
+      district: "Conjunto Residencial Córrego Longe",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: null,
+      situation: true,
+    },
+    {
+      id: 17,
+      zip_code: "87505-055",
+      street: "Rua Belo Horizonte",
+      number: "5468",
+      district: "Jardim Global",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: true,
+    },
+    {
+      id: 15,
+      zip_code: "87508-511",
+      street: "Rua Belo Jardim",
+      number: "9879",
+      district: "Jardim das Garças ll",
+      reference: "Este é um exemplo de referência",
+      description:
+        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+      image: dengueUmuaramaLogo,
+      situation: true,
+    },
+  ]);
   const [reportId, setReportId] = useState(null);
   const [reportStreet, setReportStreet] = useState(null);
   const [reportReference, setReportReference] = useState(null);
@@ -27,7 +159,7 @@ export default function ReportList({ reportListUrl }) {
   const handleSituation = async (rowData, checked) => {
     const action = checked ? "activate" : "inactivate";
 
-    await ReportSituation(`/complaints/${action}`, action);
+    await ReportSituation(`${reportListUrl}/${action}`, action);
   };
 
   const OpenMoreInfoModal = useCallback(
@@ -48,236 +180,99 @@ export default function ReportList({ reportListUrl }) {
     []
   );
 
-  const sellers = [
-    {
-      id: 155,
-      zip_code: "87508-664",
-      street: "Rua Palmyra Delmonico",
-      number: "123",
-      district: "Jardim Belo Monte",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      situation: true,
-    },
-    {
-      id: 185,
-      zip_code: "87510-659",
-      street: "Rua Ibirapuera",
-      number: "123",
-      district: "Jardim Paraíso",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      situation: true,
-    },
-    {
-      id: 125,
-      zip_code: "87505-220",
-      street: "Rua Augusta Marques Mendonça",
-      number: "123",
-      district: "Jardim Lisboa",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-    {
-      id: 15,
-      zip_code: "87502-490",
-      street: "Rua Augusto Pedro Torres",
-      number: "123",
-      district: "Jardim Yoshi",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-    {
-      id: 159,
-      zip_code: "87508-017",
-      street: "Rua Augusto dos Anjos",
-      number: "123",
-      district: "Parque Dom Pedro I",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-    {
-      id: 132,
-      zip_code: "87509-771",
-      street: "Rua Avelino Roveron",
-      number: "123",
-      district: "Jardim Verde Vale",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: null,
-      situation: true,
-    },
-    {
-      id: 123,
-      zip_code: "87508-127",
-      street: "Rua Aventureiros",
-      number: "123",
-      district: "Jardim San Martim",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: null,
-      situation: true,
-    },
-    {
-      id: 996,
-      zip_code: "87508-215",
-      street: "Rua Ayrton Senna",
-      number: "123",
-      district: "Parque Tarumã",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-    {
-      id: 28,
-      zip_code: "87504-615",
-      street: "Rua Bela Vista",
-      number: "123",
-      district: "Conjunto Residencial Córrego Longe",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: null,
-      situation: true,
-    },
-    {
-      id: 17,
-      zip_code: "87505-055",
-      street: "Rua Belo Horizonte",
-      number: "123",
-      district: "Jardim Global",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-    {
-      id: 15,
-      zip_code: "87508-511",
-      street: "Rua Belo Jardim",
-      number: "123",
-      district: "Jardim das Garças ll",
-      reference: "Este é um exemplo de referência",
-      description:
-        "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
-      image: dengueUmuaramaLogo,
-      situation: true,
-    },
-  ];
+  const columns = useMemo(
+    () => [
+      {
+        Header: "CEP",
+        accessor: "zip_code",
+        order: true,
+      },
+      {
+        Header: "RUA",
+        accessor: "street",
+        order: true,
+      },
+      {
+        Header: "NÚMERO",
+        accessor: "number",
+        order: true,
+      },
+      {
+        Header: "BAIRRO",
+        accessor: "district",
+        order: true,
+      },
+      {
+        Header: "VERIFICAÇÃO",
+        accessor: "verification",
+        order: true,
+        Cell: (row) => {
+          const rowData = row.row.original;
 
-  const columns = [
-    {
-      Header: "CEP",
-      accessor: "zip_code",
-      order: true,
-    },
-    {
-      Header: "RUA",
-      accessor: "street",
-      order: true,
-    },
-    {
-      Header: "NÚMERO",
-      accessor: "number",
-      order: true,
-    },
-    {
-      Header: "BAIRRO",
-      accessor: "district",
-      order: true,
-    },
-    {
-      Header: "STATUS",
-      accessor: "status",
-      order: true,
-      Cell: (row) => {
-        const rowData = row.row.original;
-
-        return (
-          <ToggleSwitch
-            id={`${rowData.id}`}
-            checked={rowData.situation}
-            small
-            onChange={(checked) => {
-              handleSituation(rowData, checked);
-
-              const data = sellers?.map((item) => {
-                if (item.id == rowData.id) {
-                  return {
-                    ...item,
-                    situation: !rowData.situation,
-                  };
+          return (
+            <ToggleSwitch
+              id={`${rowData.id}`}
+              checked={rowData.situation}
+              small
+              onChange={(checked) => {
+                handleSituation(rowData, checked);
+                const data = allData?.map((item) => {
+                  if (item.id === rowData.id) {
+                    return {
+                      ...item,
+                      situation: !rowData.situation,
+                    };
+                  }
+                  return item;
+                });
+                setAllData(data);
+              }}
+            />
+          );
+        },
+      },
+      {
+        Header: "MAIS",
+        accessor: "more",
+        order: false,
+        Cell: (row) => {
+          const rowData = row.row.original;
+          return (
+            <>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() =>
+                  OpenMoreInfoModal(
+                    rowData.id,
+                    rowData.street,
+                    rowData.reference,
+                    rowData.description,
+                    rowData.image
+                  )
                 }
-
-                return item;
-              });
-              // setAllData({ ...allData, data });
-            }}
-          />
-        );
+              >
+                <BiUserVoice size={15} />
+              </button>
+            </>
+          );
+        },
       },
-    },
-    {
-      Header: "AÇÕES",
-      accessor: "opcoes",
-      order: false,
-      Cell: (row) => {
-        const rowData = row.row.original;
-        return (
-          <>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() =>
-                OpenMoreInfoModal(
-                  rowData.id,
-                  rowData.street,
-                  rowData.reference,
-                  rowData.description,
-                  rowData.image
-                )
-              }
-            >
-              <BiPlusCircle size={15} />
-            </button>
-          </>
-        );
-      },
-    },
-  ];
+    ],
+    [allData]
+  );
 
-  const data = {
-    cases: "10.587",
-    focos: "11",
-    denunciations: "148",
-  };
   return (
     <>
       <CardLayout
-        headerIcon={<BiPlusCircle color="#00aeff" size={20} />}
-        headerTitle="Lista de focos"
+        headerIcon={<BiUserVoice color="#00aeff" size={20} />}
+        headerTitle="Novos Focos"
         headerButtonTitle="Voltar"
         headerButtonIcon={<BiChevronLeft size={18} />}
         headerButtonHref="/"
       >
         <div className="py-4">
-          <Table data={sellers} columns={columns} />
+          <Table data={allData} columns={columns} />
         </div>
       </CardLayout>
       {modalToMoreInfo && (

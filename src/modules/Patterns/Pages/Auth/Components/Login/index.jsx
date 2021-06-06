@@ -91,8 +91,8 @@ export default function Login({ loginUrl }) {
                 }
               >
                 <a
-                  href="/auth/recover-password"
-                  className="text-dark-50 text-hover-primary my-3 mr-2"
+                  href="/users/new"
+                  className="text-hover-primary my-3 mr-2 text-muted"
                 >
                   Novo usuário?
                 </a>
