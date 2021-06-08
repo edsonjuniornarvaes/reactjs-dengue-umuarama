@@ -1,15 +1,16 @@
-/* SECTION: Standard imports. */
+/* ANCHOR: 🧩 Standard imports. */
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
-/* SECTION: Query imports. */
+/* ANCHOR: 📨 Query imports. */
 import { useAuthContext } from "./context/AuthContext";
 
-/* SECTION: Local Components imports. */
+/* ANCHOR: 📦 Component imports. */
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/auth/login";
 import Logout from "./pages/auth/Logout";
 import Report from "./pages/report/new/report";
 import ListOfComplaints from "./pages/report/list";
+import UserForm from "./pages/users/new";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();
@@ -39,6 +40,7 @@ const Routes = () => {
         <PrivateRoute component={Logout} path="/auth/logout" />
         <PrivateRoute component={Report} path="/denuncias/novo" />
         <PrivateRoute component={ListOfComplaints} path="/denuncias/lista" />
+        <Route component={UserForm} path="/users/new" />
       </Switch>
     </BrowserRouter>
   );

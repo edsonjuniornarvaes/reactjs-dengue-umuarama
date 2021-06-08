@@ -1,12 +1,6 @@
 /* ANCHOR: 📚 Lib imports. */
 import Cookies from "js-cookie";
 
-/* ANCHOR: 📨 Query imports. */
-import { api } from "../../../../../services/interceptors";
-
-/* ANCHOR: 🎨 Style imports. */
-import { toast } from "react-toastify";
-
 export async function SigIn(url, values) {
   console.log("url:", url);
 
@@ -20,15 +14,23 @@ export async function SigIn(url, values) {
   Cookies.set("auth", JSON.stringify(true));
 
   return "success";
-
-  return await api
-    .post(url, values)
-    .then((res) => {
-      toast.success("Denúncia feita com sucesso!");
-      return res.data;
-    })
-    .catch((error) => {
-      toast.error(error.message);
-      throw new Error(error);
-    });
 }
+
+/* NOTE: Request with axios and interceptors */
+
+/* ANCHOR: 📨 Query imports. */
+// import { api } from "../../../../../../services/interceptors";
+
+// /* ANCHOR: 🎨 Style imports. */
+// import { toast } from "react-toastify";
+
+// return await api
+//   .post(url, values)
+//   .then((res) => {
+//     toast.success("Denúncia feita com sucesso!");
+//     return res.data;
+//   })
+//   .catch((error) => {
+//     toast.error(error.message);
+//     throw new Error(error);
+//   });

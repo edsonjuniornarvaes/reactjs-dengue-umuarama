@@ -8,7 +8,9 @@ export default function LayoutPanel({ children }) {
     <>
       <Navbar bg="white" expand="lg">
         <Navbar.Brand href="#home" className="text-dark bold">
-          <img src={DengueUmuaramaLogo} style={{ width: "50%" }} />
+          <a href="/">
+            <img src={DengueUmuaramaLogo} style={{ width: "50%" }} />
+          </a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -17,13 +19,13 @@ export default function LayoutPanel({ children }) {
               href="/denuncias/novo"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
-              Denunciar foco
+              Nova Denúncia
             </Nav.Link>
             <Nav.Link
               href="/denuncias/lista"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
-              Lista de focos
+              Novos Focos
             </Nav.Link>
             <Nav.Link
               href="/auth/logout"

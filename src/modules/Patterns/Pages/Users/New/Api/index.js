@@ -1,10 +1,8 @@
 /* ANCHOR: 🎨 Style imports. */
 import { toast } from "react-toastify";
 
-export async function ReportCreate(url, values) {
-  toast.success("Denúncia feita com sucesso!");
-
-  return "success";
+export async function UserCreate(url, values) {
+  toast.success("Usuário cadastrado com sucesso!");
 }
 
 /* NOTE: Request with axios and interceptors */
@@ -19,7 +17,7 @@ export async function ReportCreate(url, values) {
 // return await api
 //   .post(url, values)
 //   .then((res) => {
-//     toast.success("Denúncia feita com sucesso!");
+//     toast.success("Usuário cadastrado com sucesso!");
 //     return res.data;
 //   })
 //   .catch((error) => {
