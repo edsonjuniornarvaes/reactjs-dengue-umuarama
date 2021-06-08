@@ -4,7 +4,7 @@ import * as Yup from "yup";
 /* ANCHOR: 📝 Form imports. */
 import { OnlyNumbers } from "../../../../../../utils/format";
 
-export const UserValidationSchema = () => {
+export const ValidationSchema = () => {
   const params = {
     cpf: Yup.string()
       .min(14, "Mínimo de 14 caracteres")

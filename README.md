@@ -58,6 +58,12 @@ $ git clone https://github.com/WebDev-Dengue/web.git .
 $ git clone git@github.com:WebDev-Dengue/web.git .
 ```
 
+Generate the .env file
+
+```console
+$ cp .env.example .env
+```
+
 Install Yarn
 
 ```console
