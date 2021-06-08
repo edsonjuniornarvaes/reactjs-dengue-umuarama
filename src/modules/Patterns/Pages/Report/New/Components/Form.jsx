@@ -16,8 +16,7 @@ import { Spinner } from "react-bootstrap";
 
 /* ANCHOR: 📝 Form imports. */
 import { Formik, Form } from "formik";
-import { ReportValidationScheme } from "./Scheme";
-import { FormScheme } from "./FormScheme";
+import { ValidationSchema, FormSchema } from "./Schema";
 
 export default function ReportForm({ reportUrl }) {
   let history = useHistory();
@@ -41,7 +40,7 @@ export default function ReportForm({ reportUrl }) {
 
     console.log("imagem:", values.foto);
 
-    const data = FormScheme(values);
+    const data = FormSchema(values);
 
     await ReportCreate(reportUrl, data)
       .then((res) => {
@@ -70,7 +69,7 @@ export default function ReportForm({ reportUrl }) {
         <Formik
           onSubmit={onSubmit}
           enableReinitialize={true}
-          validationSchema={ReportValidationScheme}
+          validationSchema={ValidationSchema}
           initialValues={initialValues}
           validateOnMount={true}
         >

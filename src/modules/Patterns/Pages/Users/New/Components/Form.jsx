@@ -15,8 +15,7 @@ import { Spinner } from "react-bootstrap";
 
 /* ANCHOR: 📝 Form imports. */
 import { Formik, Form } from "formik";
-import { UserValidationScheme } from "./Scheme";
-import { FormScheme } from "./FormScheme";
+import { ValidationSchema, FormSchema } from "./Schema";
 import { CpfVerify } from "../../../../../../utils/validation";
 import { PhoneFormat } from "../../../../../../utils/format";
 
@@ -39,7 +38,7 @@ export default function UserForm({ userUrl }) {
     setSpinnerInButton(true);
     setTxtButton("Salvando");
 
-    const data = FormScheme(values);
+    const data = FormSchema(values);
 
     await UserCreate(userUrl, data)
       .then((res) => {
@@ -78,7 +77,7 @@ export default function UserForm({ userUrl }) {
         <Formik
           onSubmit={onSubmit}
           enableReinitialize={true}
-          validationSchema={UserValidationScheme}
+          validationSchema={ValidationSchema}
           initialValues={initialValues}
           validateOnMount={true}
         >

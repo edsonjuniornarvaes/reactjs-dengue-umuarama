@@ -5,7 +5,9 @@ export async function UserCreate(url, values) {
   toast.success("Usuário cadastrado com sucesso!");
 }
 
-// /* ANCHOR: 📨 Query imports. */
+/* NOTE: Request with axios and interceptors */
+
+/* ANCHOR: 📨 Query imports. */
 // import { api } from "../../../../../../services/interceptors";
 
 // console.log("url:", url);
