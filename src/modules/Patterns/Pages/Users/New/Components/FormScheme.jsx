@@ -1,7 +1,7 @@
 /* ANCHOR: 📝 Form imports. */
 import { OnlyNumbers } from "../../../../../../utils/format";
 
-export const FormScheme = (values, sellerId) => {
+export const FormScheme = (values) => {
   return JSON.parse(
     JSON.stringify({
       name: values.name,

@@ -69,7 +69,7 @@ export default function Login({ loginUrl }) {
                     {error}
                   </TextAlert>
                 </Alert>
-              )}{" "}
+              )}
               <div className="row">
                 <div className="col-lg-12 form-group">
                   <Input type="email" label="Email" name="email" spantext="*" />

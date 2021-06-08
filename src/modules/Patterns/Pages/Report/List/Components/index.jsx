@@ -5,12 +5,13 @@ import { useState, useMemo, useCallback } from "react";
 import { CardLayout } from "../../../../Layout/Card";
 import { ToggleSwitch } from "../../../../../Components/Forms/Switch";
 import Table from "../../../../DataDisplay/Table";
+import { DateBrFormat } from "../../../../../../utils/format";
 
 /* ANCHOR: 📨 Query imports. */
 import { ReportSituation } from "../Api";
 
 /* ANCHOR: 🎨 Style imports. */
-import { BiUserVoice, BiChevronLeft } from "react-icons/bi";
+import { BiUserVoice, BiPlusCircle, BiChevronLeft } from "react-icons/bi";
 import dengueUmuaramaLogo from "../../../../../../dengue-umuarama-logo.png";
 
 /* ANCHOR: 📦 Component imports. */
@@ -25,6 +26,7 @@ export default function ReportList({ reportListUrl }) {
       number: "1234",
       district: "Jardim Belo Monte",
       reference: "Este é um exemplo de referência",
+      date: "2021-06-25",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
       situation: false,
@@ -35,6 +37,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Ibirapuera",
       number: "5927",
       district: "Jardim Paraíso",
+      date: "2021-06-12",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -46,6 +49,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Augusta Marques Mendonça",
       number: "7859",
       district: "Jardim Lisboa",
+      date: "2021-06-17",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -58,6 +62,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Augusto Pedro Torres",
       number: "1237",
       district: "Jardim Yoshi",
+      date: "2021-06-18-11",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -70,6 +75,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Augusto dos Anjos",
       number: "9987",
       district: "Parque Dom Pedro I",
+      date: "2021-06-10",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -82,6 +88,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Avelino Roveron",
       number: "2364",
       district: "Jardim Verde Vale",
+      date: "2021-06-14",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -94,6 +101,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Aventureiros",
       number: "7894",
       district: "Jardim San Martim",
+      date: "2021-05-13",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -106,6 +114,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Ayrton Senna",
       number: "2268",
       district: "Parque Tarumã",
+      date: "2021-05-09",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -118,6 +127,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Bela Vista",
       number: "7519",
       district: "Conjunto Residencial Córrego Longe",
+      date: "2021-05-08",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -130,6 +140,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Belo Horizonte",
       number: "5468",
       district: "Jardim Global",
+      date: "2021-05-18",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -142,6 +153,7 @@ export default function ReportList({ reportListUrl }) {
       street: "Rua Belo Jardim",
       number: "9879",
       district: "Jardim das Garças ll",
+      date: "2021-04-18",
       reference: "Este é um exemplo de referência",
       description:
         "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
@@ -203,6 +215,15 @@ export default function ReportList({ reportListUrl }) {
         order: true,
       },
       {
+        Header: "Data",
+        accessor: "date",
+        order: true,
+        Cell: (row) => {
+          const rowData = row.row.original.date;
+          return DateBrFormat(rowData);
+        },
+      },
+      {
         Header: "VERIFICAÇÃO",
         accessor: "verification",
         order: true,
@@ -252,7 +273,7 @@ export default function ReportList({ reportListUrl }) {
                   )
                 }
               >
-                <BiUserVoice size={15} />
+                <BiPlusCircle size={15} />
               </button>
             </>
           );
