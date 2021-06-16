@@ -25,7 +25,7 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (handleCookie != null) {
+    if (handleCookie !== null) {
       setIsAuthorized(true);
     }
 

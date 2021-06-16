@@ -6,14 +6,14 @@ export const DateBrFormat = (date) => {
 };
 
 export const CpfCnpjFormat = (param) => {
-  if (param && param.length == 14) {
+  if (param && param.length === 14) {
     param = param.replace(/\D/g, "");
     param = param.replace(/^(\d{2})(\d)/, "$1.$2");
     param = param.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
     param = param.replace(/\.(\d{3})(\d)/, ".$1/$2");
     param = param.replace(/(\d{4})(\d)/, "$1-$2");
   }
-  if (param && param.length == 11)
+  if (param && param.length === 11)
     param = param.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
   return param;
 };

@@ -5,13 +5,15 @@ import { TextAlert } from "../../Components/Foundation/TextAlert";
 import { Field, ErrorMessage } from "formik";
 
 export function Textarea(props) {
-  const { label, name, ...rest } = props;
+  const { label, spantext, name, ...rest } = props;
 
   if (rest.value === "null") rest.value = "";
 
   return (
     <>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>
+        {label} <span className="mt-1 ml-1 text-danger">{spantext}</span>
+      </label>      
       <Field
         className="form-control"
         as="textarea"

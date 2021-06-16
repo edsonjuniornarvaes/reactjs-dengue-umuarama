@@ -2,6 +2,7 @@
 import Cookies from "js-cookie";
 
 export async function SigIn(url, values) {
+  console.log(values)
   console.log("url:", url);
 
   if (values.email && values.email !== "user@gmail.com") {
@@ -11,7 +12,14 @@ export async function SigIn(url, values) {
     return "error";
   }
 
-  Cookies.set("auth", JSON.stringify(true));
+  const email = values.email
+
+  const authParams = {
+    authorized: true, 
+    email
+  }
+
+  Cookies.set("auth", JSON.stringify(authParams));
 
   return "success";
 }
