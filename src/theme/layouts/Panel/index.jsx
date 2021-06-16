@@ -16,16 +16,16 @@ export default function LayoutPanel({ children }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navbar-menu">
             <Nav.Link
-              href="/denuncias/novo"
-              className="text-dark font-weight-bold text-muted link-menu mr-2"
-            >
-              Nova Denúncia
-            </Nav.Link>
-            <Nav.Link
               href="/denuncias/lista"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
-              Novos Focos
+              Focos
+            </Nav.Link>
+            <Nav.Link
+              href="/denuncias/novo"
+              className="text-dark font-weight-bold text-muted link-menu mr-2"
+            >
+              Denúncia
             </Nav.Link>
             <Nav.Link
               href="/auth/logout"

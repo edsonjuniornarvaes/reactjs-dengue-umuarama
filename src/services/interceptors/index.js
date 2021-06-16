@@ -9,7 +9,7 @@ api.interceptors.request.use(
     if (Cookies.getJSON("auth")) {
       const auth = await Cookies.getJSON("auth");
 
-      if (typeof auth != "undefined") {
+      if (typeof auth !== "undefined") {
         config.headers.Authorization = `Bearer ${auth}`;
       }
     }
@@ -25,7 +25,7 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (typeof error.response != "undefined" && error.response.status === 401) {
+    if (typeof error.response !== "undefined" && error.response.status === 401) {
       const requestConfig = error.config;
 
       Cookies.remove("auth");

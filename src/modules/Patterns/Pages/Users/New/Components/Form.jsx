@@ -56,10 +56,10 @@ export default function UserForm({ userUrl }) {
   };
 
   const HandleCnpjVerify = async (e) => {
-    if (e.target.value && e.target.value != "") {
+    if (e.target.value && e.target.value !== "") {
       const data = await CpfVerify(e.target.value);
 
-      if (data == "invalid") return "invalid";
+      if (data === "invalid") return "invalid";
 
       return "valid";
     }
@@ -104,7 +104,7 @@ export default function UserForm({ userUrl }) {
                       mask="999.999.999-99"
                       spantext="*"
                       onBlur={async (e) => {
-                        const data = e != "" && (await HandleCnpjVerify(e));
+                        const data = e !== "" && (await HandleCnpjVerify(e));
                         if (data === "valid") {
                           setFieldValue("cpf", e.target.value);
                         }

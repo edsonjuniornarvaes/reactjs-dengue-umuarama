@@ -2,9 +2,13 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+/* ANCHOR: 📚 Lib imports. */
+import Cookies from "js-cookie";
+
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../../../modules/Patterns/Layout/Card";
 import { Input } from "../../../../../../modules/Patterns/Forms/Input";
+import { Select } from "../../../../../../modules/Patterns/Forms/Select";
 import { Textarea } from "../../../../../../modules/Patterns/Forms/Textarea";
 
 /* ANCHOR: 📨 Query imports. */
@@ -25,22 +29,21 @@ export default function ReportForm({ reportUrl }) {
   const [txtButton, setTxtButton] = useState("Salvar");
 
   const [initialValues, setInitialValues] = useState({
-    cep: "",
-    rua: "",
-    numero: "",
-    bairro: "",
-    referencia: "",
-    foto: "",
-    descricao: "",
+    address_zipcode: "",
+    address_street: "",
+    address_number: "",
+    address_district: "",
+    address_reference: "",
+    photo: "",
+    description: "",
+    user: false,
   });
 
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
     setTxtButton("Salvando");
 
-    console.log("imagem:", values.foto);
-
-    const data = FormSchema(values);
+    const data = FormSchema(values, user);
 
     await ReportCreate(reportUrl, data)
       .then((res) => {
@@ -56,6 +59,12 @@ export default function ReportForm({ reportUrl }) {
         setSpinnerInButton(false);
       });
   };
+  const user = Cookies.getJSON("auth");
+
+  const anonymousOptions = [
+    { key: "Não", value: false },
+    { key: "Sim", value: true },
+  ];
 
   return (
     <>
@@ -72,26 +81,28 @@ export default function ReportForm({ reportUrl }) {
           validationSchema={ValidationSchema}
           initialValues={initialValues}
           validateOnMount={true}
+          validateOnChange={false}
+          validateOnBlur={true}
         >
-          {({ values, setFieldValue, isValid, dirty }) => (
+          {({ values, setFieldValue, setFieldTouched, isValid, dirty }) => (
             <>
               <Form className="form form-label-right">
                 <div className="row">
-                  <div className="col-lg-4 form-group">
+                  <div className="col-lg-3 form-group">
                     <Input
                       type="text"
                       label="CEP"
-                      name="cep"
+                      name="address_zipcode"
                       placeholder="CEP"
                       mask="99999-999"
                       spantext="*"
                     />
                   </div>
-                  <div className="col-lg-6 form-group">
+                  <div className="col-lg-4 form-group">
                     <Input
                       type="text"
                       label="Rua"
-                      name="rua"
+                      name="address_street"
                       placeholder="Rua"
                       spantext="*"
                     />
@@ -100,27 +111,27 @@ export default function ReportForm({ reportUrl }) {
                     <Input
                       type="text"
                       label="Número"
-                      name="numero"
+                      name="address_number"
                       placeholder="Número"
+                      spantext="*"
+                    />
+                  </div>
+                  <div className="col-lg-3 form-group">
+                    <Input
+                      type="text"
+                      label="Bairro"
+                      name="address_district"
+                      placeholder="Bairro"
                       spantext="*"
                     />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-4 form-group">
-                    <Input
-                      type="text"
-                      label="Bairro"
-                      name="bairro"
-                      placeholder="Bairro"
-                      spantext="*"
-                    />
-                  </div>
-                  <div className="col-lg-4 form-group">
+                  <div className="col-lg-5 form-group">
                     <Input
                       type="text"
                       label="Referência"
-                      name="referencia"
+                      name="address_reference"
                       placeholder="Referência"
                     />
                   </div>
@@ -129,10 +140,25 @@ export default function ReportForm({ reportUrl }) {
                     <input
                       type="file"
                       className="form-control"
-                      name="foto"
+                      name="photo"
                       accept=".jpg, .jpeg, .png, .gif"
                       onChange={(e) => {
-                        setFieldValue("foto", e.target.files[0]);
+                        setFieldValue("photo", e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                  <div className="col-lg-3 form-group">
+                  <Select
+                      options={anonymousOptions}
+                      label="Anônimo"
+                      name="user"
+                      value={values.user}
+                      onClick={(e) => setFieldTouched("user", true)}
+                      onChange={(e) => {
+                        setFieldValue(
+                          "user",
+                          e.target.value === "true" ? true : false
+                        );
                       }}
                     />
                   </div>
@@ -141,10 +167,10 @@ export default function ReportForm({ reportUrl }) {
                   <div className="col-12 form-group">
                     <Textarea
                       label="Descrição"
-                      name="descricao"
+                      name="description"
                       placeholder="Descrição"
                       spantext="*"
-                      value={values.descricao != null ? values.descricao : ""}
+                      value={values.description !== null ? values.description : ""}
                     />
                   </div>
                 </div>

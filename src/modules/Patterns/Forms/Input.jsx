@@ -13,8 +13,8 @@ import { useField, ErrorMessage } from "formik";
 const getFieldCSSClasses = (touched, errors, customClassName) => {
   const classes = [
     `${
-      typeof customClassName != "undefined" &&
-      customClassName != null &&
+      typeof customClassName !== "undefined" &&
+      customClassName !== null &&
       customClassName
     } form-control`,
   ];
@@ -59,7 +59,7 @@ export const Input = ({
         </label>
       )}
       {!mask ? (
-        typeof addonIcon != "undefined" ? (
+        typeof addonIcon !== "undefined" ? (
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">

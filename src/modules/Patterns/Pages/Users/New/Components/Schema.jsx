@@ -32,7 +32,7 @@ export const ValidationSchema = () => {
     ),
   };
 
-  return Yup.object().shape({ params });
+  return Yup.object().shape( params );
 };
 
 export const FormSchema = (values) => {
