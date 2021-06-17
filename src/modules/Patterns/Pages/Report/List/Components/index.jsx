@@ -1,5 +1,5 @@
 /* ANCHOR: 🧩 Standard imports. */
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../Layout/Card";
