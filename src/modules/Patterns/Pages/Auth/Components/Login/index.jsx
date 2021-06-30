@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+/* ANCHOR: 📚 Lib imports. */
+import Nav from "react-bootstrap/Nav";
+
 /* ANCHOR: 📦 Component imports. */
 import { Input } from "../../../../Forms/Input";
 import { TextAlert } from "../../../../../Components/Foundation/TextAlert";
@@ -15,7 +18,7 @@ import { Spinner } from "react-bootstrap";
 
 /* ANCHOR: 📝 Form imports. */
 import { Formik, Form } from "formik";
-import { LoginValidationScheme } from "./Scheme";
+import { LoginValidationScheme } from "./Schema";
 import { FormScheme } from "./FormScheme";
 import { Alert } from "react-bootstrap";
 
@@ -72,17 +75,12 @@ export default function Login({ loginUrl }) {
               )}
               <div className="row">
                 <div className="col-lg-12 form-group">
-                  <Input type="email" label="Email" name="email" spantext="*" />
+                  <Input type="email" label="Email" name="email" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-lg-12 form-group">
-                  <Input
-                    type="password"
-                    label="Senha"
-                    name="password"
-                    spantext="*"
-                  />
+                  <Input type="password" label="Senha" name="password" />
                 </div>
               </div>
               <footer
@@ -90,12 +88,12 @@ export default function Login({ loginUrl }) {
                   "form-group d-flex flex-wrap justify-content-between align-items-center"
                 }
               >
-                <a
+                <Nav.Link
                   href="/users/new"
                   className="text-hover-primary my-3 mr-2 text-muted"
                 >
                   Novo usuário?
-                </a>
+                </Nav.Link>
                 <button
                   type="submit"
                   className="btn btn-primary btn-elevate font-weight-bold"

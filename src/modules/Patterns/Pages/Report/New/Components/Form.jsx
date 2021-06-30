@@ -148,7 +148,7 @@ export default function ReportForm({ reportUrl }) {
                     />
                   </div>
                   <div className="col-lg-3 form-group">
-                  <Select
+                    <Select
                       options={anonymousOptions}
                       label="Anônimo"
                       name="user"
@@ -170,7 +170,9 @@ export default function ReportForm({ reportUrl }) {
                       name="description"
                       placeholder="Descrição"
                       spantext="*"
-                      value={values.description !== null ? values.description : ""}
+                      value={
+                        values.description !== null ? values.description : ""
+                      }
                     />
                   </div>
                 </div>
@@ -178,7 +180,7 @@ export default function ReportForm({ reportUrl }) {
                   <button
                     type="button"
                     onClick={() => history.push("/")}
-                    className="btn btn-light btn-elevate mr-5 font-weight-bold text-dark-60"
+                    className="btn btn-secondary btn-elevate mr-5 font-weight-bold text-dark-60"
                   >
                     <BiChevronLeft size={18} />
                     Cancelar

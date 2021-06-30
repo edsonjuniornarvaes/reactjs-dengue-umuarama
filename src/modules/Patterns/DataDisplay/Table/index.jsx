@@ -208,7 +208,7 @@ function Table({ data = [], columns, customLimitDefault }) {
                       !canPreviousPage ? "disabled" : ""
                     }`}
                   >
-                    <a>{"<<"}</a>
+                    <span>{"<<"}</span>
                   </button>
                 </li>
                 <li className="pagination-default-style">
@@ -218,7 +218,7 @@ function Table({ data = [], columns, customLimitDefault }) {
                       !canPreviousPage ? "disabled" : ""
                     }`}
                   >
-                    <a> {"<"}</a>
+                    <span> {"<"}</span>
                   </button>
                 </li>
                 {buttonPagination?.map((item) => (
@@ -238,7 +238,7 @@ function Table({ data = [], columns, customLimitDefault }) {
                     onClick={() => handleButtonPagination("next")}
                     className={`option-next ${!canNextPage ? "disabled" : ""}`}
                   >
-                    <a>{">"}</a>
+                    <span>{">"}</span>
                   </button>
                 </li>
                 <li className="pagination-default-style">
@@ -246,7 +246,7 @@ function Table({ data = [], columns, customLimitDefault }) {
                     onClick={() => handleGoPage(pageCount - 1)}
                     className={`option-last ${!canNextPage ? "disabled" : ""}`}
                   >
-                    <a>{">>"}</a>
+                    <span>{">>"}</span>
                   </button>
                 </li>
               </ul>

@@ -1,6 +1,9 @@
 /* ANCHOR: 🧩 Standard imports. */
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
+/* ANCHOR: 📚 Lib imports. */
+import { useLocation } from "react-router-dom";
+
 /* ANCHOR: 📨 Query imports. */
 import { useAuthContext } from "./context/AuthContext";
 
@@ -15,11 +18,13 @@ import UserForm from "./pages/users/new";
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();
 
+  let { pathname } = useLocation();
+
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthorized && "undefined" ? (
+        (isAuthorized && "undefined") || pathname === "/" ? (
           <Component {...props} />
         ) : (
           <Redirect

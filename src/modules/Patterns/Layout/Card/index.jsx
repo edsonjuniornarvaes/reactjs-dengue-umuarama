@@ -1,3 +1,6 @@
+/* ANCHOR: 📚 Lib imports. */
+import Nav from "react-bootstrap/Nav";
+
 /* ANCHOR: 🎛️ Layout imports. */
 import Card from "react-bootstrap/Card";
 
@@ -16,7 +19,7 @@ export function CardLayout({
           <h5>
             {headerIcon} <span className="ml-1">{headerTitle}</span>
           </h5>
-          <a href={headerButtonHref}>
+          <Nav.Link href={headerButtonHref}>
             <button type="button" className="btn btn-success font-weight-bold">
               {headerButtonTitle === "Voltar" ||
               headerButtonTitle === "Cancelar" ? (
@@ -31,7 +34,7 @@ export function CardLayout({
                 </>
               )}
             </button>
-          </a>
+          </Nav.Link>
         </Card.Header>
         <Card.Body>{children}</Card.Body>
       </Card>

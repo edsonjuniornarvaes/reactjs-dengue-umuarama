@@ -2,13 +2,6 @@
   <img alt="Dengue Umuarama Panel" title="Dengue Umuarama Panel" src="./src/dengue-umuarama-logo.png" width="20%" />
 </h1>
 
-<p align="center">
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-how-to-begin">How to begin</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-development">Development</a>
-</p>
-
 <br>
 
 <p align="center">

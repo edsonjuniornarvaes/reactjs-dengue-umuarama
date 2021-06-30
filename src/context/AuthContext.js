@@ -1,5 +1,5 @@
 /* SECTION: Standard imports. */
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect, useRef } from "react";
 
 /* SECTION: Lib imports. */
 import Cookies from "js-cookie";
@@ -17,7 +17,7 @@ export function AuthContextProvider({ children }) {
     if (!Cookies.getJSON("auth")) return null;
   });
 
-  let authCookie = null;
+  let authCookie = useRef(null);
 
   useEffect(() => {
     authCookie = Cookies.getJSON("auth");

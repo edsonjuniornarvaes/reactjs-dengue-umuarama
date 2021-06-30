@@ -162,7 +162,7 @@ export default function UserForm({ userUrl }) {
                   <button
                     type="button"
                     onClick={() => history.push("/")}
-                    className="btn btn-light btn-elevate mr-5 font-weight-bold text-dark-60"
+                    className="btn btn-secondary btn-elevate mr-5 font-weight-bold text-dark-60"
                   >
                     <BiChevronLeft size={18} />
                     Cancelar

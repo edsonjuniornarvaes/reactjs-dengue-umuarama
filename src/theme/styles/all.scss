@@ -61,3 +61,8 @@ th {
 .card {
   border-color: var(--white);
 }
+
+.verificationFooter {
+  display: flex;
+  justify-content: space-between;
+}

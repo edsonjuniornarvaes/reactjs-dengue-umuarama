@@ -17,7 +17,7 @@ export default function Dashboard({ title }) {
       denunciations: "11",
     },
     {
-      district: "Parque Residencial Belo Mon",
+      district: "Parque Residencial Belo Monte",
       cases: "5",
       focus: "1",
       denunciations: "26",
@@ -116,7 +116,7 @@ export default function Dashboard({ title }) {
               <span className="text-danger">Casos em Umuarama</span>
             </Card.Title>
             <Card.Text>
-              <h1>{data.cases}</h1>
+              <span className="h1">{data.cases}</span>
             </Card.Text>
           </Card.Body>
         </Card>
@@ -127,7 +127,7 @@ export default function Dashboard({ title }) {
               <span className="text-warning">Bairros com focos</span>
             </Card.Title>
             <Card.Text>
-              <h1>{data.focos}</h1>
+              <span className="h1">{data.focos}</span>
             </Card.Text>
           </Card.Body>
         </Card>
@@ -138,7 +138,7 @@ export default function Dashboard({ title }) {
               <span className="text-primary">Total de denúncias</span>
             </Card.Title>
             <Card.Text>
-              <h1>{data.denunciations}</h1>
+              <span className="h1">{data.denunciations}</span>
             </Card.Text>
           </Card.Body>
         </Card>
