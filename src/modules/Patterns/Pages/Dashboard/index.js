@@ -1,8 +1,13 @@
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import Table from "../../DataDisplay/Table";
+import dengueUmuaramaIcon from "../../../../favicon.ico";
 
 export default function Dashboard({ title }) {
+  const helmetContext = {};
+
   const sellers = [
     {
       district: "Jardim Lisboa",
@@ -103,6 +108,15 @@ export default function Dashboard({ title }) {
 
   return (
     <>
+      <HelmetProvider context={helmetContext}>
+        <link
+          rel="icon"
+          type="image/png"
+          href={dengueUmuaramaIcon}
+          sizes="16x16"
+        />
+        <Helmet title="Web Dengue | Dashboard" />
+      </HelmetProvider>
       <section className="title h3 py-1">
         <span className="h3 first-title mr-1">Painel</span>
         <span className="h3 second-title">Dengue</span>

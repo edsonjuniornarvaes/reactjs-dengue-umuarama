@@ -4,18 +4,18 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 
 /* ANCHOR: 📚 Lib imports. */
 import Cookies from "js-cookie";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../Layout/Card";
 import Table from "../../../../DataDisplay/Table";
 import { DateBrFormat } from "../../../../../../utils/format";
+import { ReportMoreInfoDialog } from "./MoreInfoDialog.jsx";
 
 /* ANCHOR: 🎨 Style imports. */
 import { BiUserVoice, BiPlusCircle, BiChevronLeft } from "react-icons/bi";
 import dengueUmuaramaLogo from "../../../../../../dengue-umuarama-logo.png";
-
-/* ANCHOR: 📦 Component imports. */
-import { ReportMoreInfoDialog } from "./MoreInfoDialog.jsx";
+import dengueUmuaramaIcon from "../../../../../../favicon.ico";
 
 export default function ReportList({ reportListUrl }) {
   const [allData, setAllData] = useState();
@@ -27,6 +27,7 @@ export default function ReportList({ reportListUrl }) {
   const [modalToMoreInfo, setModalToMoreInfo] = useState(false);
 
   const reportUser = Cookies.getJSON("auth");
+  const helmetContext = {};
 
   async function fetchData({ param }) {
     console.count("chamada da tabela");
@@ -262,6 +263,15 @@ export default function ReportList({ reportListUrl }) {
 
   return (
     <>
+      <HelmetProvider context={helmetContext}>
+        <link
+          rel="icon"
+          type="image/png"
+          href={dengueUmuaramaIcon}
+          sizes="16x16"
+        />
+        <Helmet title="Web Dengue | Focos" />
+      </HelmetProvider>
       <CardLayout
         headerIcon={<BiUserVoice color="#00aeff" size={20} />}
         headerTitle="Novos Focos"

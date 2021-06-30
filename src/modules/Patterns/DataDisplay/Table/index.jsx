@@ -1,4 +1,4 @@
-/* SECTION: Standard for simple paged table. 
+/* ANCHOR: Standard for simple paged table. 
 -  ---------------------------------------*/
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";

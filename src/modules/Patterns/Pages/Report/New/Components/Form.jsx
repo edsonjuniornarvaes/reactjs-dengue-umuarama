@@ -4,12 +4,16 @@ import { useHistory } from "react-router-dom";
 
 /* ANCHOR: 📚 Lib imports. */
 import Cookies from "js-cookie";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../../../modules/Patterns/Layout/Card";
 import { Input } from "../../../../../../modules/Patterns/Forms/Input";
 import { Select } from "../../../../../../modules/Patterns/Forms/Select";
 import { Textarea } from "../../../../../../modules/Patterns/Forms/Textarea";
+
+/* ANCHOR: 🎛️ Layout imports. */
+import dengueUmuaramaIcon from "../../../../../../favicon.ico";
 
 /* ANCHOR: 📨 Query imports. */
 import { ReportCreate } from "../Api";
@@ -24,6 +28,7 @@ import { ValidationSchema, FormSchema } from "./Schema";
 
 export default function ReportForm({ reportUrl }) {
   let history = useHistory();
+  const helmetContext = {};
 
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
@@ -57,6 +62,15 @@ export default function ReportForm({ reportUrl }) {
 
   return (
     <>
+      <HelmetProvider context={helmetContext}>
+        <link
+          rel="icon"
+          type="image/png"
+          href={dengueUmuaramaIcon}
+          sizes="16x16"
+        />
+        <Helmet title="Web Dengue | Denúncia" />
+      </HelmetProvider>
       <CardLayout
         headerIcon={<BiUserVoice color="#00aeff" size={20} />}
         headerTitle="Nova Denúncia"

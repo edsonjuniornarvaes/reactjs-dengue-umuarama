@@ -1,10 +1,10 @@
-/* SECTION: Standard imports. */
+/* ANCHOR: 🧩 Standard imports. */
 import { useState, createContext, useContext, useEffect } from "react";
 
-/* SECTION: Lib imports. */
+/* ANCHOR: 📚 Lib imports. */
 import Cookies from "js-cookie";
 
-/* SECTION: Context creation. */
+/* ANCHOR: 📡 Context creation. */
 const Auth = createContext();
 
 export function AuthContextProvider({ children }) {

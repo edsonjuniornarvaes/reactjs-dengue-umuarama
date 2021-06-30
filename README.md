@@ -75,7 +75,6 @@ You can now access [`localhost:3000`](http://localhost:3000) from your browser.
 
 This project was developed by
 <a href="http://linkedin.com/in/edsonjuniornarvaes">
-<br>
 <img alt="Edson Junior" src="./src/dengue-umuarama-logo.png" width="8%" title="Go to Edson Junior"/>
 </a>
 

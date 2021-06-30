@@ -2,9 +2,15 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+/* ANCHOR: 📚 Lib imports. */
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../Layout/Card";
 import { Input } from "../../../../Forms/Input";
+
+/* ANCHOR: 🎛️ Layout imports. */
+import dengueUmuaramaIcon from "../../../../../../favicon.ico";
 
 /* ANCHOR: 📨 Query imports. */
 import { UserCreate } from "../Api";
@@ -21,6 +27,7 @@ import { PhoneFormat } from "../../../../../../utils/format";
 
 export default function UserForm({ userUrl }) {
   let history = useHistory();
+  const helmetContext = {};
 
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
@@ -58,6 +65,15 @@ export default function UserForm({ userUrl }) {
 
   return (
     <>
+      <HelmetProvider context={helmetContext}>
+        <link
+          rel="icon"
+          type="image/png"
+          href={dengueUmuaramaIcon}
+          sizes="16x16"
+        />
+        <Helmet title="Web Dengue | Usuário" />
+      </HelmetProvider>
       <CardLayout
         headerIcon={<BiUserCircle color="#00aeff" size={20} />}
         headerTitle="Novo Usuário"

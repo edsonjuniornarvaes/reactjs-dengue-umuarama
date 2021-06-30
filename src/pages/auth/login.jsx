@@ -1,13 +1,25 @@
+/* ANCHOR: 📚 Lib imports. */
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
+/* ANCHOR: 📦 Component imports. */
 import styles from "../../theme/styles/patterns/pages/auth/auth.module.css";
 import Login from "../../modules/Patterns/Pages/Auth/Components/Login";
+
+/* ANCHOR: 🎛️ Layout imports. */
 import dengueUmuaramaLogo from "../../dengue-umuarama-logo.png";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-const helmetContext = {};
+import dengueUmuaramaIcon from "../../favicon.ico";
 
 export default function Home() {
+  const helmetContext = {};
   return (
     <>
       <HelmetProvider context={helmetContext}>
+        <link
+          rel="icon"
+          type="image/png"
+          href={dengueUmuaramaIcon}
+          sizes="16x16"
+        />
         <Helmet title="Web Dengue | Login" />
       </HelmetProvider>
 
