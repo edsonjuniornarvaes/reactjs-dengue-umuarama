@@ -8,7 +8,11 @@ export default function LayoutPanel({ children }) {
     <>
       <Navbar bg="white" expand="lg">
         <Nav.Link href="/">
-          <img src={DengueUmuaramaLogo} style={{ width: "50%" }} />
+          <img
+            src={DengueUmuaramaLogo}
+            style={{ width: "50%" }}
+            alt="Dengue Umuarama"
+          />
         </Nav.Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

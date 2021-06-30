@@ -28,17 +28,6 @@ export default function ReportForm({ reportUrl }) {
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
 
-  const [initialValues, setInitialValues] = useState({
-    address_zipcode: "",
-    address_street: "",
-    address_number: "",
-    address_district: "",
-    address_reference: "",
-    photo: "",
-    description: "",
-    user: false,
-  });
-
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
     setTxtButton("Salvando");
@@ -79,7 +68,16 @@ export default function ReportForm({ reportUrl }) {
           onSubmit={onSubmit}
           enableReinitialize={true}
           validationSchema={ValidationSchema}
-          initialValues={initialValues}
+          initialValues={{
+            address_zipcode: "",
+            address_street: "",
+            address_number: "",
+            address_district: "",
+            address_reference: "",
+            photo: "",
+            description: "",
+            user: false,
+          }}
           validateOnMount={true}
           validateOnChange={false}
           validateOnBlur={true}

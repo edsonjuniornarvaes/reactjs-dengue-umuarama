@@ -25,7 +25,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 function Table({ data = [], columns, customLimitDefault }) {
   const [buttonPagination, setButtonPagination] = useState([]);
 
-  const memoColumns = useMemo(() => columns, []);
+  const memoColumns = useMemo(() => columns, [columns]);
   const memoData = useMemo(() => data, [data]);
 
   const {

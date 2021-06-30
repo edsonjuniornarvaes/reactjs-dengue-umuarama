@@ -25,15 +25,6 @@ export default function UserForm({ userUrl }) {
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
 
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    cpf: "",
-    email: "",
-    phone: "",
-    password: "",
-    password_confirmation: "",
-  });
-
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
     setTxtButton("Salvando");
@@ -78,7 +69,14 @@ export default function UserForm({ userUrl }) {
           onSubmit={onSubmit}
           enableReinitialize={true}
           validationSchema={ValidationSchema}
-          initialValues={initialValues}
+          initialValues={{
+            name: "",
+            cpf: "",
+            email: "",
+            phone: "",
+            password: "",
+            password_confirmation: "",
+          }}
           validateOnMount={true}
         >
           {({ values, setFieldValue, isValid, dirty }) => (

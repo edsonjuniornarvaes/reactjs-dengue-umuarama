@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* ANCHOR: 🧩 Standard imports. */
 import { useState, useMemo, useCallback, useEffect } from "react";
 
@@ -27,8 +28,8 @@ export default function ReportList({ reportListUrl }) {
 
   const reportUser = Cookies.getJSON("auth");
 
-  async function fetchData({}) {
-    console.count("chamou a tabela");
+  async function fetchData({ param }) {
+    console.count("chamada da tabela");
     const data = await [
       {
         id: 155,

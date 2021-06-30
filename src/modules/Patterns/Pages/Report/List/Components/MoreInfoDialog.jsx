@@ -72,7 +72,7 @@ export function ReportMoreInfoDialog({
         <Modal.Title id="example-modal-sizes-title-lg">Verificação</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {console.log(reportImage)}
+        {console.log(typeof reportImage != "undefined" && reportImage)}
         <p>
           <BiStreetView size={22} />
           <strong className="ml-2">Rua</strong>: {reportStreet}
@@ -91,11 +91,7 @@ export function ReportMoreInfoDialog({
           <strong className="ml-2">Imagem do local</strong>
         </p>
         {typeof reportImage !== "undefined" ? (
-          <img
-            alt="Image example"
-            src={reportImage}
-            style={{ width: "100%" }}
-          />
+          <img src={reportImage} style={{ width: "100%" }} alt="Denúncia" />
         ) : (
           <>
             <BiErrorAlt size={22} />

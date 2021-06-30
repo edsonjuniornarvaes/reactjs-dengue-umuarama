@@ -29,11 +29,6 @@ export default function Login({ loginUrl }) {
   const [txtButton, setTxtButton] = useState("Entrar");
   const [error, setError] = useState(null);
 
-  const [initialValues, setInitialValues] = useState({
-    email: "",
-    password: "",
-  });
-
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
     setTxtButton("Entrando");
@@ -58,7 +53,7 @@ export default function Login({ loginUrl }) {
       <Formik
         onSubmit={onSubmit}
         validationSchema={LoginValidationScheme}
-        initialValues={initialValues}
+        initialValues={{ email: "", password: "" }}
       >
         {({ isValid }) => (
           <>
