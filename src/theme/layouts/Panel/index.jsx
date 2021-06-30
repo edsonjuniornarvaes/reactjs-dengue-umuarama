@@ -36,6 +36,12 @@ export default function LayoutPanel({ children }) {
               Denúncia
             </Nav.Link>
             <Nav.Link
+              href="/supervisor/new"
+              className="text-dark font-weight-bold text-muted link-menu mr-2"
+            >
+              Supervisor
+            </Nav.Link>
+            <Nav.Link
               href="/auth/logout"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
