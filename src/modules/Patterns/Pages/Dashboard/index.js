@@ -3,7 +3,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import Table from "../../DataDisplay/Table";
-import dengueUmuaramaIcon from "../../../../favicon.ico";
+import dengueUmuaramaLogo from "../../../../dengue-umuarama-logo.png";
 
 export default function Dashboard({ title }) {
   const helmetContext = {};
@@ -112,7 +112,7 @@ export default function Dashboard({ title }) {
         <link
           rel="icon"
           type="image/png"
-          href={dengueUmuaramaIcon}
+          href={dengueUmuaramaLogo}
           sizes="16x16"
         />
         <Helmet title="Web Dengue | Dashboard" />

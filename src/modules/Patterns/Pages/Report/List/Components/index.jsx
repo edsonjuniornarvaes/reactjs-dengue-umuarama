@@ -15,7 +15,6 @@ import { ReportMoreInfoDialog } from "./MoreInfoDialog.jsx";
 /* ANCHOR: 🎨 Style imports. */
 import { BiUserVoice, BiPlusCircle, BiChevronLeft } from "react-icons/bi";
 import dengueUmuaramaLogo from "../../../../../../dengue-umuarama-logo.png";
-import dengueUmuaramaIcon from "../../../../../../favicon.ico";
 
 export default function ReportList({ reportListUrl }) {
   const [allData, setAllData] = useState();
@@ -24,6 +23,7 @@ export default function ReportList({ reportListUrl }) {
   const [reportReference, setReportReference] = useState(null);
   const [reportDescription, setReportDescription] = useState(null);
   const [reportImage, setReportImage] = useState(null);
+  const [reportReporter, setReportReporter] = useState(null);
   const [modalToMoreInfo, setModalToMoreInfo] = useState(false);
 
   const reportUser = Cookies.getJSON("auth");
@@ -38,10 +38,11 @@ export default function ReportList({ reportListUrl }) {
         street: "Rua Palmyra Delmonico",
         number: "1234",
         district: "Jardim Belo Monte",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         date: "2021-06-25",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         situation: false,
       },
       {
@@ -51,9 +52,10 @@ export default function ReportList({ reportListUrl }) {
         number: "5927",
         district: "Jardim Paraíso",
         date: "2021-06-12",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         situation: false,
       },
       {
@@ -63,9 +65,10 @@ export default function ReportList({ reportListUrl }) {
         number: "7859",
         district: "Jardim Lisboa",
         date: "2021-06-17",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: true,
       },
@@ -76,9 +79,10 @@ export default function ReportList({ reportListUrl }) {
         number: "1237",
         district: "Jardim Yoshi",
         date: "2021-06-18-11",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: true,
       },
@@ -89,9 +93,10 @@ export default function ReportList({ reportListUrl }) {
         number: "9987",
         district: "Parque Dom Pedro I",
         date: "2021-06-10",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: false,
       },
@@ -102,9 +107,10 @@ export default function ReportList({ reportListUrl }) {
         number: "2364",
         district: "Jardim Verde Vale",
         date: "2021-06-14",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: null,
         situation: true,
       },
@@ -115,9 +121,10 @@ export default function ReportList({ reportListUrl }) {
         number: "7894",
         district: "Jardim San Martim",
         date: "2021-05-13",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: null,
         situation: false,
       },
@@ -128,9 +135,10 @@ export default function ReportList({ reportListUrl }) {
         number: "2268",
         district: "Parque Tarumã",
         date: "2021-05-09",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: true,
       },
@@ -141,9 +149,10 @@ export default function ReportList({ reportListUrl }) {
         number: "7519",
         district: "Conjunto Residencial Córrego Longe",
         date: "2021-05-08",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: null,
         situation: true,
       },
@@ -154,9 +163,10 @@ export default function ReportList({ reportListUrl }) {
         number: "5468",
         district: "Jardim Global",
         date: "2021-05-18",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: true,
       },
@@ -167,9 +177,10 @@ export default function ReportList({ reportListUrl }) {
         number: "9879",
         district: "Jardim das Garças ll",
         date: "2021-04-18",
-        reference: "Este é um exemplo de referência",
+        reference: "Ex. de referência",
+        reporter_name: "Ex. do nome do denúnciante",
         description:
-          "Este é um exemplo de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
+          "Ex. de descrição da denúncia, aqui virá um texto com caracteres permitidos de 10 a 200",
         image: dengueUmuaramaLogo,
         situation: true,
       },
@@ -187,13 +198,15 @@ export default function ReportList({ reportListUrl }) {
       reportStreet,
       reportReference,
       reportDescription,
-      reportImage
+      reportImage,
+      reportReporter
     ) => {
       setReportId(reportId);
       setReportStreet(reportStreet);
       setReportReference(reportReference);
       setReportDescription(reportDescription);
       setReportImage(reportImage);
+      setReportReporter(reportReporter);
       setModalToMoreInfo(true);
     },
     []
@@ -247,7 +260,8 @@ export default function ReportList({ reportListUrl }) {
                     rowData.street,
                     rowData.reference,
                     rowData.description,
-                    rowData.image
+                    rowData.image,
+                    rowData.reporter_name
                   )
                 }
               >
@@ -267,7 +281,7 @@ export default function ReportList({ reportListUrl }) {
         <link
           rel="icon"
           type="image/png"
-          href={dengueUmuaramaIcon}
+          href={dengueUmuaramaLogo}
           sizes="16x16"
         />
         <Helmet title="Web Dengue | Focos" />
@@ -292,6 +306,7 @@ export default function ReportList({ reportListUrl }) {
           reportDescription={reportDescription}
           reportImage={reportImage}
           reportUser={reportUser}
+          reportReporter={reportReporter}
           fetchData={fetchData}
           onHide={() => {
             setModalToMoreInfo(false);

@@ -2,6 +2,8 @@
 import { toast } from "react-toastify";
 
 export async function UserCreate(url, values) {
+  console.log("url", url);
+  console.log("values", values);
   toast.success("Usuário cadastrado com sucesso!");
 }
 

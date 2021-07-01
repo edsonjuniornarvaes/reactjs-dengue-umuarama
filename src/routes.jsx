@@ -17,7 +17,6 @@ import Logout from "./pages/auth/Logout";
 import Report from "./pages/report/new/report";
 import ListOfComplaints from "./pages/report/list";
 import UserForm from "./pages/users/new";
-import SupervisorForm from "./pages/supervisor/new";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();
@@ -56,10 +55,9 @@ const Routes = () => {
       <Switch>
         <Route component={Dashboard} path="/" exact />
         <Route component={Login} path="/auth/login" />
+        <Route component={Report} path="/denuncias/novo" />
         <PrivateRoute component={Logout} path="/auth/logout" />
-        <PrivateRoute component={Report} path="/denuncias/novo" />
-        <Route component={UserForm} path="/users/new" />
-        <PrivateRoute component={SupervisorForm} path="/supervisor/new" />
+        <PrivateRoute component={UserForm} path="/users/new" />
         <PrivateRoute component={ListOfComplaints} path="/denuncias/lista" />
       </Switch>
     </BrowserRouter>

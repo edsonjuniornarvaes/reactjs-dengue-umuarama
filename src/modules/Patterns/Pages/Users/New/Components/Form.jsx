@@ -8,9 +8,10 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../Layout/Card";
 import { Input } from "../../../../Forms/Input";
+import { Select } from "../../../../../Patterns/Forms/Select";
 
 /* ANCHOR: 🎛️ Layout imports. */
-import dengueUmuaramaIcon from "../../../../../../favicon.ico";
+import dengueUmuaramaLogo from "../../../../../../favicon.ico";
 
 /* ANCHOR: 📨 Query imports. */
 import { UserCreate } from "../Api";
@@ -44,7 +45,7 @@ export default function UserForm({ userUrl }) {
         setSpinnerInButton(false);
 
         setTimeout(() => {
-          history.push("/");
+          // history.push("/");
         }, 500);
       })
       .catch(() => {
@@ -63,13 +64,22 @@ export default function UserForm({ userUrl }) {
     }
   };
 
+  const profileOptions = [
+    {
+      key: "Selecione",
+      value: "",
+    },
+    { key: "Admin", value: "1" },
+    { key: "Fiscal", value: "2" },
+  ];
+
   return (
     <>
       <HelmetProvider context={helmetContext}>
         <link
           rel="icon"
           type="image/png"
-          href={dengueUmuaramaIcon}
+          href={dengueUmuaramaLogo}
           sizes="16x16"
         />
         <Helmet title="Web Dengue | Usuário" />
@@ -92,14 +102,15 @@ export default function UserForm({ userUrl }) {
             phone: "",
             password: "",
             password_confirmation: "",
+            profile: "",
           }}
           validateOnMount={true}
         >
-          {({ values, setFieldValue, isValid, dirty }) => (
+          {({ values, setFieldValue, setFieldTouched, isValid, dirty }) => (
             <>
               <Form className="form form-label-right">
                 <div className="row">
-                  <div className="col-lg-6 form-group">
+                  <div className="col-lg-4 form-group">
                     <Input
                       type="text"
                       label="Nome"
@@ -108,7 +119,7 @@ export default function UserForm({ userUrl }) {
                       spantext="*"
                     />
                   </div>
-                  <div className="col-lg-2 form-group">
+                  <div className="col-lg-3 form-group">
                     <Input
                       type="text"
                       id="cpf"
@@ -128,7 +139,7 @@ export default function UserForm({ userUrl }) {
                       }}
                     />
                   </div>
-                  <div className="col-lg-4 form-group">
+                  <div className="col-lg-3 form-group">
                     <Input
                       type="text"
                       label="Telefone"
@@ -137,6 +148,19 @@ export default function UserForm({ userUrl }) {
                       spantext="*"
                       addonText="+55"
                       onBlur={PhoneFormat}
+                    />
+                  </div>
+                  <div className="col-lg-2 form-group">
+                    <Select
+                      options={profileOptions}
+                      label="Perfil"
+                      name="profile"
+                      spantext="*"
+                      value={values.profile}
+                      onClick={(e) => setFieldTouched("profile", true)}
+                      onChange={(e) => {
+                        setFieldValue("profile", e.target.value);
+                      }}
                     />
                   </div>
                 </div>

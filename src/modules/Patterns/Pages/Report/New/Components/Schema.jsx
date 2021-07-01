@@ -35,8 +35,7 @@ export const ValidationSchema = () => {
 export const FormSchema = (values, user) => {
   let data = new FormData();
 
-  console.log(values.user);
-  console.log(user.email);
+  console.log(user);
 
   data.append("address_zipcode", values.address_zipcode);
   data.append("address_street", values.address_street);
@@ -44,7 +43,14 @@ export const FormSchema = (values, user) => {
   data.append("address_district", values.address_district);
   data.append("address_reference", values.address_reference);
   data.append("photo", values.photo);
-  data.append("user", values.user ? "Anônimo" : user.email);
+  if (values.user) data.append("reporter_name", "Anônimo");
+  if (!values.user && typeof user != "undefined")
+    data.append("reporter_name", user.email);
+  if (!values.user && typeof user === "undefined") {
+    data.append("reporter_name", values.reporter_name);
+    data.append("reporter_cpf", values.reporter_cpf);
+    data.append("reporter_phone", values.reporter_phone);
+  }
   data.append("description", values.description);
 
   return data;

@@ -2,9 +2,10 @@
 import { toast } from "react-toastify";
 
 export async function ReportCreate(url, values) {
+  console.log("url", url);
 
   for (var pair of values.entries()) {
-    console.log('values:', pair[0]+ ', ' + pair[1]); 
+    console.log("values:", pair[0] + ", " + pair[1]);
   }
 
   toast.success("Denúncia feita com sucesso!");

@@ -17,6 +17,7 @@ import {
   BiAlignLeft,
   BiImage,
   BiErrorAlt,
+  BiUser,
 } from "react-icons/bi";
 import { Spinner } from "react-bootstrap";
 
@@ -31,6 +32,7 @@ export function ReportMoreInfoDialog({
   reportStreet,
   reportReference,
   reportDescription,
+  reportReporter,
   reportImage,
   reportUrl,
   reportUser,
@@ -84,6 +86,10 @@ export function ReportMoreInfoDialog({
         <p>
           <BiAlignLeft size={22} />
           <strong className="ml-2">Descrição</strong>: {reportDescription}
+        </p>
+        <p>
+          <BiUser size={22} />
+          <strong className="ml-2">Denunciante</strong>: {reportReporter}
         </p>
         <hr />
         <p>

@@ -7,7 +7,6 @@ import Login from "../../modules/Patterns/Pages/Auth/Components/Login";
 
 /* ANCHOR: 🎛️ Layout imports. */
 import dengueUmuaramaLogo from "../../dengue-umuarama-logo.png";
-import dengueUmuaramaIcon from "../../favicon.ico";
 
 export default function Home() {
   const helmetContext = {};
@@ -17,7 +16,7 @@ export default function Home() {
         <link
           rel="icon"
           type="image/png"
-          href={dengueUmuaramaIcon}
+          href={dengueUmuaramaLogo}
           sizes="16x16"
         />
         <Helmet title="Web Dengue | Login" />

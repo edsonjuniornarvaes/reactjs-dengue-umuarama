@@ -1,9 +1,14 @@
+/* ANCHOR: 📚 Lib imports. */
+import Cookies from "js-cookie";
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 import DengueUmuaramaLogo from "../../../dengue-umuarama-logo.png";
 
 export default function LayoutPanel({ children }) {
+  const auth = Cookies.getJSON("auth");
+
   return (
     <>
       <Navbar bg="white" expand="lg">
@@ -23,30 +28,45 @@ export default function LayoutPanel({ children }) {
             >
               Dashboard
             </Nav.Link>
-            <Nav.Link
-              href="/denuncias/lista"
-              className="text-dark font-weight-bold text-muted link-menu mr-2"
-            >
-              Focos
-            </Nav.Link>
+            {auth && (
+              <>
+                <Nav.Link
+                  href="/users/new"
+                  className="text-dark font-weight-bold text-muted link-menu mr-2"
+                >
+                  Usuário
+                </Nav.Link>
+                <Nav.Link
+                  href="/denuncias/lista"
+                  className="text-dark font-weight-bold text-muted link-menu mr-2"
+                >
+                  Denúncias
+                </Nav.Link>
+              </>
+            )}
+
             <Nav.Link
               href="/denuncias/novo"
               className="text-dark font-weight-bold text-muted link-menu mr-2"
             >
-              Denúncia
+              Denunciar
             </Nav.Link>
-            <Nav.Link
-              href="/supervisor/new"
-              className="text-dark font-weight-bold text-muted link-menu mr-2"
-            >
-              Supervisor
-            </Nav.Link>
-            <Nav.Link
-              href="/auth/logout"
-              className="text-dark font-weight-bold text-muted link-menu mr-2"
-            >
-              Sair
-            </Nav.Link>
+            {auth && (
+              <Nav.Link
+                href="/auth/logout"
+                className="text-dark font-weight-bold text-muted link-menu mr-2"
+              >
+                Sair
+              </Nav.Link>
+            )}
+            {!auth && (
+              <Nav.Link
+                href="/auth/login"
+                className="text-dark font-weight-bold text-muted link-menu mr-2"
+              >
+                Login
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

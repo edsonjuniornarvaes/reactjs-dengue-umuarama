@@ -2,13 +2,10 @@
 import Cookies from "js-cookie";
 
 export async function SigIn(url, values) {
-  console.log(values);
+  console.log("url", url);
+  console.log("values", values);
 
-  if (
-    values.email &&
-    values.email !== "admin@gmail.com" &&
-    values.email !== "supervisor@gmail.com"
-  ) {
+  if (values.email && values.email !== "admin@gmail.com") {
     return "error";
   }
   if (values.password.length >= 4 && values.password !== "123password") {
@@ -20,12 +17,7 @@ export async function SigIn(url, values) {
   const authParams = {
     authorized: true,
     email,
-    profile:
-      email === "admin@gmail.com"
-        ? "admin"
-        : email === "supervisor@gmail.com"
-        ? "supervisor"
-        : "user",
+    profile: email === "admin@gmail.com" && "admin",
   };
 
   Cookies.set("auth", JSON.stringify(authParams));

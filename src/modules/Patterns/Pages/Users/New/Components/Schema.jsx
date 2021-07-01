@@ -30,9 +30,10 @@ export const ValidationSchema = () => {
       [Yup.ref("password"), null],
       "As senhas não coincidem"
     ),
+    profile: Yup.string().required("Perfil é obrigatório"),
   };
 
-  return Yup.object().shape( params );
+  return Yup.object().shape(params);
 };
 
 export const FormSchema = (values) => {
@@ -44,6 +45,8 @@ export const FormSchema = (values) => {
       phone: OnlyNumbers(values.phone),
       password: values.password,
       password_confirmation: values.password_confirmation,
+      profile:
+        values.profile === "1" ? "admin" : values.profile === "2" && "fiscal",
     })
   );
 };

@@ -9,22 +9,28 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 /* ANCHOR: 📦 Component imports. */
 import { CardLayout } from "../../../../../../modules/Patterns/Layout/Card";
 import { Input } from "../../../../../../modules/Patterns/Forms/Input";
-import { Select } from "../../../../../../modules/Patterns/Forms/Select";
 import { Textarea } from "../../../../../../modules/Patterns/Forms/Textarea";
 
 /* ANCHOR: 🎛️ Layout imports. */
-import dengueUmuaramaIcon from "../../../../../../favicon.ico";
+import dengueUmuaramaLogo from "../../../../../../dengue-umuarama-logo.png";
 
 /* ANCHOR: 📨 Query imports. */
 import { ReportCreate } from "../Api";
 
 /* ANCHOR: 🎨 Style imports. */
-import { BiUserVoice, BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import {
+  BiUserVoice,
+  BiErrorAlt,
+  BiChevronLeft,
+  BiChevronRight,
+} from "react-icons/bi";
 import { Spinner } from "react-bootstrap";
 
 /* ANCHOR: 📝 Form imports. */
 import { Formik, Form } from "formik";
 import { ValidationSchema, FormSchema } from "./Schema";
+import { CpfVerify } from "../../../../../../utils/validation";
+import { PhoneFormat } from "../../../../../../utils/format";
 
 export default function ReportForm({ reportUrl }) {
   let history = useHistory();
@@ -32,6 +38,7 @@ export default function ReportForm({ reportUrl }) {
 
   const [spinnerInButton, setSpinnerInButton] = useState(false);
   const [txtButton, setTxtButton] = useState("Salvar");
+  const user = Cookies.getJSON("auth");
 
   const onSubmit = async (values) => {
     setSpinnerInButton(true);
@@ -45,7 +52,7 @@ export default function ReportForm({ reportUrl }) {
         setSpinnerInButton(false);
 
         setTimeout(() => {
-          history.push("/");
+          // history.push("/");
         }, 500);
       })
       .catch(() => {
@@ -53,12 +60,16 @@ export default function ReportForm({ reportUrl }) {
         setSpinnerInButton(false);
       });
   };
-  const user = Cookies.getJSON("auth");
 
-  const anonymousOptions = [
-    { key: "Não", value: false },
-    { key: "Sim", value: true },
-  ];
+  const HandleCnpjVerify = async (e) => {
+    if (e.target.value && e.target.value !== "") {
+      const data = await CpfVerify(e.target.value);
+
+      if (data === "invalid") return "invalid";
+
+      return "valid";
+    }
+  };
 
   return (
     <>
@@ -66,7 +77,7 @@ export default function ReportForm({ reportUrl }) {
         <link
           rel="icon"
           type="image/png"
-          href={dengueUmuaramaIcon}
+          href={dengueUmuaramaLogo}
           sizes="16x16"
         />
         <Helmet title="Web Dengue | Denúncia" />
@@ -90,13 +101,15 @@ export default function ReportForm({ reportUrl }) {
             address_reference: "",
             photo: "",
             description: "",
-            user: false,
+            reporter_name: "",
+            reporter_cpf: "",
+            reporter_phone: "",
           }}
           validateOnMount={true}
           validateOnChange={false}
           validateOnBlur={true}
         >
-          {({ values, setFieldValue, setFieldTouched, isValid, dirty }) => (
+          {({ values, setFieldValue, isValid, errors }) => (
             <>
               <Form className="form form-label-right">
                 <div className="row">
@@ -139,7 +152,7 @@ export default function ReportForm({ reportUrl }) {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-5 form-group">
+                  <div className="col-lg-6 form-group">
                     <Input
                       type="text"
                       label="Referência"
@@ -147,7 +160,7 @@ export default function ReportForm({ reportUrl }) {
                       placeholder="Referência"
                     />
                   </div>
-                  <div className="col-lg-4 form-group">
+                  <div className="col-lg-6 form-group">
                     <label>Foto</label>
                     <input
                       type="file"
@@ -156,21 +169,6 @@ export default function ReportForm({ reportUrl }) {
                       accept=".jpg, .jpeg, .png, .gif"
                       onChange={(e) => {
                         setFieldValue("photo", e.target.files[0]);
-                      }}
-                    />
-                  </div>
-                  <div className="col-lg-3 form-group">
-                    <Select
-                      options={anonymousOptions}
-                      label="Anônimo"
-                      name="user"
-                      value={values.user}
-                      onClick={(e) => setFieldTouched("user", true)}
-                      onChange={(e) => {
-                        setFieldValue(
-                          "user",
-                          e.target.value === "true" ? true : false
-                        );
                       }}
                     />
                   </div>
@@ -188,6 +186,56 @@ export default function ReportForm({ reportUrl }) {
                     />
                   </div>
                 </div>
+                {!values.user && (
+                  <>
+                    <p className="py-4 ml-2 text-center">
+                      <BiErrorAlt color="#00aeff" size={20} /> Para se
+                      identificar, preencha os dados abaixo
+                    </p>
+                    <hr />
+                    <div className="row">
+                      <div className="col-lg-4 form-group">
+                        <Input
+                          type="text"
+                          label="Nome"
+                          name="reporter_name"
+                          placeholder="Nome"
+                        />
+                      </div>
+                      <div className="col-lg-4 form-group">
+                        <Input
+                          type="text"
+                          id="cpf"
+                          label="CPF"
+                          name="reporter_cpf"
+                          placeholder="CPF"
+                          mask="999.999.999-99"
+                          onBlur={async (e) => {
+                            const data =
+                              e !== "" && (await HandleCnpjVerify(e));
+                            if (data === "valid") {
+                              setFieldValue("reporter_cpf", e.target.value);
+                            }
+                            if (data === "invalid") {
+                              setFieldValue("reporter_cpf", "");
+                            }
+                          }}
+                        />
+                      </div>
+                      <div className="col-lg-4 form-group">
+                        <Input
+                          type="text"
+                          label="Telefone"
+                          name="reporter_phone"
+                          placeholder="Telefone"
+                          addonText="+55"
+                          onBlur={PhoneFormat}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+                <hr />
                 <footer className={"d-flex justify-content-end"}>
                   <button
                     type="button"
