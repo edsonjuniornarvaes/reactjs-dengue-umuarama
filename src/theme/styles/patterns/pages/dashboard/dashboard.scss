@@ -1,0 +1,14 @@
+.dashboardSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customButton {
+  color: var(--text-green) !important;
+  background-color: var(--white-color) !important;
+  border-radius: 8px !important;
+
+  &:hover {
+    background-color: var(--light-white-color) !important;
+  }
+}

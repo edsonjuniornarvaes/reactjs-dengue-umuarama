@@ -17,6 +17,7 @@ import Logout from "./pages/auth/Logout";
 import Report from "./pages/report/new/report";
 import ListOfComplaints from "./pages/report/list";
 import UserForm from "./pages/users/new";
+import DengueCharts from "./pages/charts";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { isAuthorized } = useAuthContext();
@@ -59,6 +60,7 @@ const Routes = () => {
         <PrivateRoute component={Logout} path="/auth/logout" />
         <PrivateRoute component={UserForm} path="/users/new" />
         <PrivateRoute component={ListOfComplaints} path="/denuncias/lista" />
+        <Route component={DengueCharts} path="/charts" />
       </Switch>
     </BrowserRouter>
   );

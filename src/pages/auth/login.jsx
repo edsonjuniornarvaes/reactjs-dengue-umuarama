@@ -24,12 +24,14 @@ export default function Home() {
 
       <div className={`${styles.container} ${styles.loginScreen}`}>
         <section className={styles.main}>
-          <img
-            alt="Dengue Umuarama Panel"
-            title="Dengue Umuarama Panel"
-            src={dengueUmuaramaLogo}
-            width="70%"
-          />
+          <a href="/">
+            <img
+              alt="Dengue Umuarama Panel"
+              title="Dengue Umuarama Panel"
+              src={dengueUmuaramaLogo}
+              width="70%"
+            />
+          </a>
           <h5 className="mt-4">Faça seu login</h5>
           <p>Utilize suas credenciais para acessar</p>
           <div className={styles.grid}>

@@ -5,7 +5,6 @@ export const ValidationSchema = () => {
   const params = {
     address_zipcode: Yup.string()
       .min(3, "Mínimo de 3 caracteres")
-      .max(50, "Máximo de 50 caracteres")
       .required("CEP é obrigatório")
       .nullable(),
     address_street: Yup.string()
@@ -37,16 +36,18 @@ export const FormSchema = (values, user) => {
 
   console.log(user);
 
+  console.log(values.photo);
+
   data.append("address_zipcode", values.address_zipcode);
   data.append("address_street", values.address_street);
   data.append("address_number", values.address_number);
   data.append("address_district", values.address_district);
   data.append("address_reference", values.address_reference);
   data.append("photo", values.photo);
-  if (values.user) data.append("reporter_name", "Anônimo");
-  if (!values.user && typeof user != "undefined")
-    data.append("reporter_name", user.email);
-  if (!values.user && typeof user === "undefined") {
+  if (!values.reporter_name && !values.reporter_cpf && !values.reporter_phone) {
+    data.append("reporter_name", "Anônimo");
+  }
+  if (values.reporter_name || values.reporter_cpf || values.reporter_phone) {
     data.append("reporter_name", values.reporter_name);
     data.append("reporter_cpf", values.reporter_cpf);
     data.append("reporter_phone", values.reporter_phone);

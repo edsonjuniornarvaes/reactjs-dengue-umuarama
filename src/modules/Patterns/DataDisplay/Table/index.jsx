@@ -2,7 +2,6 @@
 -  ---------------------------------------*/
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 import {
   useTable,
@@ -11,6 +10,15 @@ import {
   useAsyncDebounce,
   usePagination,
 } from "react-table";
+
+import {
+  BiChevronRight,
+  BiChevronLeft,
+  BiChevronsRight,
+  BiChevronsLeft,
+  BiCaretUp,
+  BiCaretDown,
+} from "react-icons/bi";
 
 import TableBootstrap from "react-bootstrap/Table";
 
@@ -138,6 +146,7 @@ function Table({ data = [], columns, customLimitDefault }) {
           <label htmlFor="">
             <input
               type="text"
+              className="searchInput"
               placeholder="Pesquisar..."
               onChange={(e) => onChange(e.target.value)}
               name=""
@@ -158,9 +167,9 @@ function Table({ data = [], columns, customLimitDefault }) {
                       <span>
                         {column.isSorted ? (
                           column.isSortedDesc ? (
-                            <FaArrowUp size={10} />
+                            <BiCaretUp color="#3997FA" size={15} />
                           ) : (
-                            <FaArrowDown size={10} />
+                            <BiCaretDown color="#3997FA" size={15} />
                           )
                         ) : (
                           ""
@@ -208,7 +217,9 @@ function Table({ data = [], columns, customLimitDefault }) {
                       !canPreviousPage ? "disabled" : ""
                     }`}
                   >
-                    <span>{"<<"}</span>
+                    <span>
+                      <BiChevronsLeft color="#3997FA" size={15} />
+                    </span>
                   </button>
                 </li>
                 <li className="pagination-default-style">
@@ -218,7 +229,9 @@ function Table({ data = [], columns, customLimitDefault }) {
                       !canPreviousPage ? "disabled" : ""
                     }`}
                   >
-                    <span> {"<"}</span>
+                    <span>
+                      <BiChevronLeft color="#3997FA" size={15} />
+                    </span>
                   </button>
                 </li>
                 {buttonPagination?.map((item) => (
@@ -238,7 +251,9 @@ function Table({ data = [], columns, customLimitDefault }) {
                     onClick={() => handleButtonPagination("next")}
                     className={`option-next ${!canNextPage ? "disabled" : ""}`}
                   >
-                    <span>{">"}</span>
+                    <span>
+                      <BiChevronRight color="#3997FA" size={15} />
+                    </span>
                   </button>
                 </li>
                 <li className="pagination-default-style">
@@ -246,7 +261,9 @@ function Table({ data = [], columns, customLimitDefault }) {
                     onClick={() => handleGoPage(pageCount - 1)}
                     className={`option-last ${!canNextPage ? "disabled" : ""}`}
                   >
-                    <span>{">>"}</span>
+                    <span>
+                      <BiChevronsRight color="#3997FA" size={15} />
+                    </span>
                   </button>
                 </li>
               </ul>

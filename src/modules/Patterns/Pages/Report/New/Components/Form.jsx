@@ -1,5 +1,5 @@
 /* ANCHOR: 🧩 Standard imports. */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 /* ANCHOR: 📚 Lib imports. */
@@ -52,7 +52,7 @@ export default function ReportForm({ reportUrl }) {
         setSpinnerInButton(false);
 
         setTimeout(() => {
-          // history.push("/");
+          history.push("/");
         }, 500);
       })
       .catch(() => {

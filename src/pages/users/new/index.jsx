@@ -7,7 +7,7 @@ import PanelLayout from "../../../theme/layouts/Panel";
 export default function Report() {
   return (
     <PanelLayout title="Novo Usuário">
-      <UserForm reportUrl={`/users/new`} />
+      <UserForm userUrl={`/users/new`} />
     </PanelLayout>
   );
 }

@@ -1,5 +1,6 @@
 :root {
   --white-color: #fff;
+  --light-white-color: rgb(250, 250, 250);
   --background-ice-white-color: #f1f5f9;
   --base-color: #1e1e2d;
   --sub-color: #1a1a27;
@@ -9,11 +10,11 @@
   --gray-500: #808080;
   --gray-800: #494d4b;
   --text-muted: #6c757d;
+  --text-green: rgb(69 132 58);
 }
 
 body {
   background-color: var(--background-ice-white-color);
-  // height: 100vh;
 }
 
 .navbar {
@@ -25,6 +26,7 @@ body {
 
   & .link-menu {
     &:hover {
+      color: var(--gray-800) !important;
       border-radius: 0.5rem;
       background-color: var(--background-ice-white-color);
     }

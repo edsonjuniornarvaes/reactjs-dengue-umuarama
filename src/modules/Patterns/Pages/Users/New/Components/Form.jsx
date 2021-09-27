@@ -45,7 +45,7 @@ export default function UserForm({ userUrl }) {
         setSpinnerInButton(false);
 
         setTimeout(() => {
-          // history.push("/");
+          history.push("/");
         }, 500);
       })
       .catch(() => {

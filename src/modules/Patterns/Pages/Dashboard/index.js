@@ -5,7 +5,14 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Table from "../../DataDisplay/Table";
 import dengueUmuaramaLogo from "../../../../dengue-umuarama-logo.png";
 
-export default function Dashboard({ title }) {
+import Nav from "react-bootstrap/Nav";
+// import Navbar from "react-bootstrap/Navbar";
+
+/* ANCHOR: 🎨 Style imports. */
+import "../../../../theme/styles/patterns/pages/dashboard/dashboard.scss";
+import { AiOutlinePieChart } from "react-icons/ai";
+
+export default function Dashboard() {
   const helmetContext = {};
 
   const sellers = [
@@ -102,8 +109,8 @@ export default function Dashboard({ title }) {
 
   const data = {
     cases: "10.587",
-    focos: "11",
-    denunciations: "148",
+    focos: "125",
+    denunciations: "1148",
   };
 
   return (
@@ -115,12 +122,20 @@ export default function Dashboard({ title }) {
           href={dengueUmuaramaLogo}
           sizes="16x16"
         />
-        <Helmet title="Web Dengue | Dashboard" />
+        <Helmet title="Dashboard - Dengue Umuarama" />
       </HelmetProvider>
-      <section className="title h3 py-1">
-        <span className="h3 first-title mr-1">Painel</span>
-        <span className="h3 second-title">Dengue</span>
-        <p className="description-title ml-1 mt-1">Casos em Umuarama-PR</p>
+      <section className="title h3 py-1 dashboardSection">
+        <div>
+          <span className="h3 first-title mr-1">Painel</span>
+          <span className="h3 second-title">Dengue</span>
+          <p className="description-title ml-1 mt-1">Casos em Umuarama-PR</p>
+        </div>
+        <div>
+          <Nav.Link href="/charts" className="btn customButton">
+            <span className="mr-1">Gráfico</span>
+            <AiOutlinePieChart size={18} />
+          </Nav.Link>
+        </div>
       </section>
       <CardDeck>
         <Card>
